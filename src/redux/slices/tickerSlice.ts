@@ -1,28 +1,38 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import {fetchTickerInfo} from '../../API/tickerAPI'
 
 export interface TickerState {
-  value: string
+  name: string,
+  info: Object
 }
 
 const initialState: TickerState = {
-  value: "APPL",
+  name: "",
+  info: {}
 }
+
+export const getTickerInfo = createAsyncThunk(
+  "ticker/get_info",
+  async (tickerName: string) => {
+    const data = await fetchTickerInfo(tickerName);
+    return data;
+  }
+);
 
 export const tickerSlice = createSlice({
   name: 'ticker',
   initialState,
   reducers: {
-    // right now just fetch ticker info using async thunk action
-    fetchTickerInfo: (state, action) => {
-      state.value = action.payload// placeholder code
-    }
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getTickerInfo.fulfilled, (state, action) => {
+        state.info = action.payload;
+      })
+  }
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchTickerInfo } = tickerSlice.actions
+// export const {  } = tickerSlice.actions
 
 export default tickerSlice.reducer
