@@ -4,7 +4,8 @@ import HighchartsReact from "highcharts-react-official";
 import { useSelector, useDispatch } from "react-redux";
 import { getTickerInfo } from "./redux/slices/tickerSlice";
 import { RootState } from "./redux/store";
-import "./App.css";
+import TickerInfo from './components/TickerInfo'
+import "./App.scss";
 
 function App() {
   const options: Highcharts.Options = {
@@ -33,7 +34,7 @@ function App() {
   const handleTickerSearch = () => {
     dispatch(getTickerInfo(tickerName));
   };
-  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -52,12 +53,12 @@ function App() {
         </div>
       </header>
       <main>
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={options}
-          ref={chartComponentRef}
-        />
+          <HighchartsReact
+            highcharts={Highcharts}
+            constructorType={"stockChart"}
+            options={options}
+            ref={chartComponentRef}
+          />
       </main>
       <footer>Footer</footer>
     </div>
