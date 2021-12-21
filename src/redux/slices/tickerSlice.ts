@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {fetchTickerInfo} from '../../API/tickerAPI'
-
+import {TickerInfoProps} from '../../components/TickerInfo'
 export interface TickerState {
   name: string,
-  info: Object
+  info: TickerInfoProps | null
 }
 
 const initialState: TickerState = {
   name: "",
-  info: {}
+  info: null
 }
 
 export const getTickerInfo = createAsyncThunk(

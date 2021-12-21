@@ -21,9 +21,9 @@ function App() {
   };
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  const [tickerName, setTickerName] = useState("");
+  const [tickerName, setTickerName] = useState("aapl");
   const tickerInfo = useSelector((state: RootState) => state.ticker.info);
-  console.log(tickerInfo);
+
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent) => {
@@ -36,7 +36,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container">
       <header className="App-header">
         <div>Header</div>
         <div>
@@ -53,12 +53,18 @@ function App() {
         </div>
       </header>
       <main>
+        <div>
+          {tickerInfo ? <TickerInfo {...tickerInfo}/> : null}
+          
+        </div>
+        <div>
           <HighchartsReact
             highcharts={Highcharts}
             constructorType={"stockChart"}
             options={options}
             ref={chartComponentRef}
           />
+        </div>
       </main>
       <footer>Footer</footer>
     </div>
