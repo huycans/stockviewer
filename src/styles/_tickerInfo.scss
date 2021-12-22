@@ -1,6 +1,25 @@
 .tickerInfo {
-  & .small-subtitle {
-    color: rgba($color: #7c7c7c, $alpha: 0.7);
-    font-style: italic;
+
+  & table, th, td {
+    border-bottom: 1px solid $light-border-gray;
+    border-collapse: collapse;
+  }
+
+  & table {
+    min-width: 300px;
+    width: 100%;
+  }
+
+  & .basicInfo {
+    & .small-subtitle {
+      color: rgba($color: $light-text-gray, $alpha: 0.8);
+      font-style: italic;
+    }
+  }
+  & .detailedInfo{
+    & .fieldValue {
+      font-weight: bold;
+      text-align: right;
+    }
   }
 }

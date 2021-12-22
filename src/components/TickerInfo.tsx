@@ -117,10 +117,10 @@ export default function TickerInfo(props: TickerInfoProps) {
 
   return (
     <div className="tickerInfo">
-      <div className="row">
+      <div className="row basicInfo">
         <div className="row">
           <h2>
-            {longName}&nbsp;{symbol}
+            {longName}&nbsp;({symbol})
           </h2>
           <span className="small-subtitle">Currency: {currency}. Home country: {country}. Sector: {sector}</span>
         </div>
@@ -129,14 +129,14 @@ export default function TickerInfo(props: TickerInfoProps) {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row justify-content-around detailedInfo">
         <div className="col" id="table_1">
           <table>
             <tbody>
               {table1Data.map((data) => (
                 <tr>
-                  <td>{data.name}</td>
-                  <td>{data.value}</td>
+                  <td className="fieldName">{data.name}</td>
+                  <td className="fieldValue">{data.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -147,8 +147,8 @@ export default function TickerInfo(props: TickerInfoProps) {
             <tbody>
               {table2Data.map((data) => (
                 <tr>
-                  <td>{data.name}</td>
-                  <td>{data.value}</td>
+                  <td className="fieldName">{data.name}</td>
+                  <td className="fieldValue">{data.value}</td>
                 </tr>
               ))}
             </tbody>
