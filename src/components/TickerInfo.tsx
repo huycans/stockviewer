@@ -1,4 +1,5 @@
 import React from "react";
+import { DateTime } from "luxon";
 
 export type TickerInfoProps = {
   symbol: string;
@@ -7,23 +8,23 @@ export type TickerInfoProps = {
   country: string;
   currency: string;
   currentPrice: string;
-  previousClose: string;
-  open: string;
-  bid: string;
-  bidSize: string;
-  ask: string;
-  askSize: string;
-  dayLow: string;
-  dayHigh: string;
-  fiftyTwoWeekLow: string;
-  fiftyTwoWeekHigh: string;
-  volume: string;
-  averageVolume: string;
-  marketCap: string;
+  previousClose: number;
+  open: number;
+  bid: number;
+  bidSize: number;
+  ask: number;
+  askSize: number;
+  dayLow: number;
+  dayHigh: number;
+  fiftyTwoWeekLow: number;
+  fiftyTwoWeekHigh: number;
+  volume: number;
+  averageVolume: number;
+  marketCap: number;
   beta: string;
   trailingPE: string;
   trailingEps: string;
-  exDividendDate: string;
+  exDividendDate: number;
 };
 
 export default function TickerInfo(props: TickerInfoProps) {
@@ -53,47 +54,78 @@ export default function TickerInfo(props: TickerInfoProps) {
     exDividendDate
   } = props;
 
+  const formatDate = (epochNumber: number) => {
+    return DateTime.fromSeconds(epochNumber).toFormat('LLL dd, yyyy');
+  }
+
+  const formatNumber = (number: number)=>{
+    return new Intl.NumberFormat('en-US', {
+      
+    }).format(number)
+  }
+
+  var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
+
+  function formatMoney(number: number){
+
+      // what tier? (determines SI symbol)
+      var tier = Math.log10(Math.abs(number)) / 3 | 0;
+
+      // if zero, we don't need a suffix
+      if(tier === 0) return number;
+
+      // get suffix and determine scale
+      var suffix = SI_SYMBOL[tier];
+      var scale = Math.pow(10, tier * 3);
+
+      // scale the number
+      var scaled = number / scale;
+
+      // format number and add suffix
+      return scaled.toFixed(3) + suffix;
+  }
+
   const table1Data = [
     {
       name: "Previous Close",
-      value: previousClose
+      value: formatNumber(previousClose)
     },
     {
       name: "Open",
-      value: open
+      value: formatNumber(open)
     },
     {
       name: "Bid",
-      value: bid + "*" + bidSize
+      value: formatNumber(bid) + "*" + bidSize
     },
 
     {
       name: "Ask",
-      value: ask + "*" + askSize
+      value: formatNumber(ask) + "*" + askSize
     },
 
     {
       name: "Day Range",
-      value: dayLow + "-" + dayHigh
+      value: dayLow + " - " + dayHigh
     },
     {
       name: "52 Week Range",
-      value: fiftyTwoWeekLow + "-" + fiftyTwoWeekHigh
+      value: fiftyTwoWeekLow + " - " + fiftyTwoWeekHigh
     },
     {
       name: "Volume",
-      value: volume
+      value: formatNumber(volume)
     },
     {
       name: "Avg. Volume",
-      value: averageVolume
+      value: formatNumber(averageVolume)
     }
   ];
 
   const table2Data = [
     {
       name: "Market Cap",
-      value: marketCap
+      value: formatMoney(marketCap)
     },
     {
       name: "Beta (5Y Monthly)",
@@ -111,7 +143,7 @@ export default function TickerInfo(props: TickerInfoProps) {
 
     {
       name: "Ex-Dividend Date",
-      value: exDividendDate
+      value: formatDate(exDividendDate)
     }
   ];
 
