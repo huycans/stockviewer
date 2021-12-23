@@ -25,6 +25,9 @@ export type TickerInfoProps = {
   trailingPE: string;
   trailingEps: string;
   exDividendDate: number;
+  lastDividendDate: number;
+  earningsGrowth: number;
+  lastFiscalYearEnd: number;
 };
 
 export default function TickerInfo(props: TickerInfoProps) {
@@ -51,7 +54,10 @@ export default function TickerInfo(props: TickerInfoProps) {
     beta,
     trailingPE,
     trailingEps,
-    exDividendDate
+    exDividendDate,
+    lastDividendDate,
+    earningsGrowth,
+    lastFiscalYearEnd
   } = props;
 
   const formatDate = (epochNumber: number) => {
@@ -128,6 +134,11 @@ export default function TickerInfo(props: TickerInfoProps) {
       value: formatMoney(marketCap)
     },
     {
+      name: "Earning growth",
+      value: earningsGrowth
+    },
+    
+    {
       name: "Beta (5Y Monthly)",
       value: beta
     },
@@ -144,7 +155,19 @@ export default function TickerInfo(props: TickerInfoProps) {
     {
       name: "Ex-Dividend Date",
       value: formatDate(exDividendDate)
+    },
+
+    {
+      name: "Last Dividend Date",
+      value: formatDate(lastDividendDate)
+    },
+
+    {
+      name: "Last Fiscal Year End",
+      value: formatDate(lastFiscalYearEnd)
     }
+    
+    
   ];
 
   return (
