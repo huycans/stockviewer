@@ -4,7 +4,8 @@ import HighchartsReact from "highcharts-react-official";
 import { useSelector, useDispatch } from "react-redux";
 import { getTickerInfo } from "./redux/slices/tickerSlice";
 import { RootState } from "./redux/store";
-import TickerInfo from './components/TickerInfo'
+import TickerInfo from "./components/TickerInfo";
+import Header from "./components/Header";
 import "./App.scss";
 
 function App() {
@@ -21,42 +22,15 @@ function App() {
   };
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  const [tickerName, setTickerName] = useState("aapl");
   const tickerInfo = useSelector((state: RootState) => state.ticker.info);
 
   const dispatch = useDispatch();
 
-  const handleChange = (event: React.ChangeEvent) => {
-    let target = event.target as HTMLInputElement;
-    setTickerName(target.value);
-  };
-
-  const handleTickerSearch = () => {
-    dispatch(getTickerInfo(tickerName));
-  };
-
   return (
     <div className="App container">
-      <header className="App-header">
-        <div>Header</div>
-        <div>
-          <input
-            value={tickerName}
-            id="searchbar"
-            type="text"
-            onChange={handleChange}
-          />
-          <h4>Current ticker symbol is {tickerName}</h4>
-          <button onClick={handleTickerSearch}>
-            Click here to search for ticker
-          </button>
-        </div>
-      </header>
+      <Header />
       <main>
-        <div>
-          {tickerInfo ? <TickerInfo {...tickerInfo}/> : null}
-          
-        </div>
+        <div>{tickerInfo ? <TickerInfo {...tickerInfo} /> : null}</div>
         <div>
           <HighchartsReact
             highcharts={Highcharts}
