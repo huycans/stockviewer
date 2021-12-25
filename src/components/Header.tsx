@@ -8,7 +8,7 @@ import { getTickerInfo } from "../redux/slices/tickerSlice";
 import stockviewerLogo from '../assets/img/stockviewer.png'
 
 export default function Header() {
-  const [tickerName, setTickerName] = useState("aapl");
+  const [tickerName, setTickerName] = useState("");
   const tickerInfo = useSelector((state: RootState) => state.ticker.info);
 
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export default function Header() {
           id="searchBar"
           type="text"
           onChange={handleChange}
+          placeholder="Enter a stock ticker here"
         />
         <button id="searchBtn" onClick={handleTickerSearch}>
           <FontAwesomeIcon icon={faSearch} />
