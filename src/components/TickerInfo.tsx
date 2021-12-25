@@ -165,9 +165,7 @@ export default function TickerInfo(props: TickerInfoProps) {
     {
       name: "Last Fiscal Year End",
       value: formatDate(lastFiscalYearEnd)
-    }
-    
-    
+    }  
   ];
 
   return (

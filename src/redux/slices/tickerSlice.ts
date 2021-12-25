@@ -1,38 +1,48 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {fetchTickerInfo} from '../../API/tickerAPI'
-import {TickerInfoProps} from '../../components/TickerInfo'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchTickerInfo } from "../../API/tickerAPI";
+import { TickerInfoProps } from "../../components/TickerInfo";
+
 export interface TickerState {
-  name: string,
-  info: TickerInfoProps | null
+  name: string;
+  info: TickerInfoProps | null;
+  error: string;
 }
 
 const initialState: TickerState = {
   name: "",
-  info: null
-}
+  info: null,
+  error: ""
+};
 
 export const getTickerInfo = createAsyncThunk(
   "ticker/get_info",
-  async (tickerName: string) => {
-    const data = await fetchTickerInfo(tickerName);
-    return data;
+  async (tickerName: string, {rejectWithValue}) => {
+    try {
+      const data = await fetchTickerInfo(tickerName);
+      if (data.error) throw data.error;
+      return data;
+    } catch (error) {
+      return rejectWithValue(error); //will asssign 'error' as 'action.payload' in the reducer
+    }
   }
 );
 
 export const tickerSlice = createSlice({
-  name: 'ticker',
+  name: "ticker",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getTickerInfo.fulfilled, (state, action) => {
         state.info = action.payload;
       })
+      .addCase(getTickerInfo.rejected, (state, action) => {
+        state.error = action.payload as string;
+      });
   }
-})
+});
 
 // Action creators are generated for each case reducer function
 // export const {  } = tickerSlice.actions
 
-export default tickerSlice.reducer
+export default tickerSlice.reducer;

@@ -6,6 +6,7 @@ import { getTickerInfo } from "./redux/slices/tickerSlice";
 import { RootState } from "./redux/store";
 import TickerInfo from "./components/TickerInfo";
 import Header from "./components/Header";
+import Error from "./components/Error";
 import "./App.scss";
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
   return (
     <div className="App container">
       <Header />
+      <Error />
+
       <main>
         <div>{tickerInfo ? <TickerInfo {...tickerInfo} /> : null}</div>
         <div>

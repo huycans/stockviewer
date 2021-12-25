@@ -22,6 +22,7 @@ export default function Header() {
     setTickerName(target.value);
   };
 
+
   return (
     <header className="row">
       <div className="col-3 header-title">
