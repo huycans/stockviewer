@@ -6,12 +6,14 @@ export interface TickerState {
   name: string;
   info: TickerInfoProps | null;
   error: string;
+  priceHistory: number[][];
 }
 
 const initialState: TickerState = {
   name: "",
   info: null,
-  error: ""
+  error: "",
+  priceHistory: []
 };
 
 export const getTickerInfo = createAsyncThunk(
@@ -34,7 +36,8 @@ export const tickerSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTickerInfo.fulfilled, (state, action) => {
-        state.info = action.payload;
+        state.info = action.payload.info;
+        state.priceHistory = action.payload.price_history;
       })
       .addCase(getTickerInfo.rejected, (state, action) => {
         state.error = action.payload as string;
