@@ -7,13 +7,15 @@ export interface TickerState {
   info: TickerInfoProps | null;
   error: string;
   priceHistory: number[][];
+  isLoading: boolean;
 }
 
 const initialState: TickerState = {
   name: "",
   info: null,
   error: "",
-  priceHistory: []
+  priceHistory: [],
+  isLoading: false
 };
 
 export const getTickerInfo = createAsyncThunk(
@@ -35,12 +37,17 @@ export const tickerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getTickerInfo.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(getTickerInfo.fulfilled, (state, action) => {
         state.info = action.payload.info;
         state.priceHistory = action.payload.price_history;
+        state.isLoading = false;
       })
       .addCase(getTickerInfo.rejected, (state, action) => {
         state.error = action.payload as string;
+        state.isLoading = false;
       });
   }
 });

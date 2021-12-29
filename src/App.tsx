@@ -4,7 +4,8 @@ import { RootState } from "./redux/store";
 import TickerInfo from "./components/TickerInfo";
 import Header from "./components/Header";
 import ErrorDisplay from "./components/ErrorDisplay";
-import StockChart from './components/StockChart';
+import StockChart from "./components/StockChart";
+import LoadSpinner from "./components/LoadSpinner";
 
 import "./App.scss";
 
@@ -17,9 +18,10 @@ function App() {
     <div className="App container">
       <Header />
       <ErrorDisplay />
-
       <main>
+        <LoadSpinner/>
         {tickerInfo ? <TickerInfo {...tickerInfo} /> : null}
+        <hr/>
         {tickerInfo ? <StockChart /> : null}
       </main>
       <footer>Footer</footer>
