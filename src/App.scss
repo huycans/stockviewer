@@ -4,6 +4,7 @@
 @import "./styles/header";
 @import "./styles/stockChart";
 @import "./styles/loadSpinner";
+@import "./styles/footer";
 
 // reset styles
 body {
@@ -12,6 +13,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.errorContainer{
+.errorContainer {
   color: $main-red;
+}
+
+#root {
+  position: relative;
+  min-height: 100vh;
+
+  .App {
+    margin-bottom: -140px;
+    min-height: 100%;
+    padding-bottom: 4rem;
+  }
 }

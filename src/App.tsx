@@ -8,6 +8,7 @@ import StockChart from "./components/StockChart";
 import LoadSpinner from "./components/LoadSpinner";
 
 import "./App.scss";
+import Footer from "./components/Footer";
 
 function App() {
   const tickerInfo = useSelector((state: RootState) => state.ticker.info);
@@ -15,17 +16,20 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    <div className="App container">
-      <Header />
-      <ErrorDisplay />
-      <main>
-        <LoadSpinner/>
-        {tickerInfo ? <TickerInfo {...tickerInfo} /> : null}
-        <hr/>
-        {tickerInfo ? <StockChart /> : null}
-      </main>
-      <footer>Footer</footer>
-    </div>
+    <>
+      <div className="App container">
+        <Header />
+        <ErrorDisplay />
+        <main>
+          <LoadSpinner />
+          {tickerInfo ? <TickerInfo {...tickerInfo} /> : null}
+          <hr />
+          {tickerInfo ? <StockChart /> : null}
+        </main>
+        <div className="push"></div>
+      </div>
+      <Footer/>
+    </>
   );
 }
 

@@ -1,0 +1,26 @@
+$footer-height: 150px;
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: $gray-400;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  padding-top: 20px;
+  ul {
+    padding-left: 0;
+  }
+  .tech-used {
+    list-style: none;
+  }
+
+  div[class*="col-"] {
+    height: 100%;
+  }
+}
+
+.push{
+  height: $footer-height;
+}
