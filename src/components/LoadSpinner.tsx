@@ -1,9 +1,9 @@
 import React from "react";
-import { RootState } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {selectTickerIsLoading} from '../redux/slices/tickerSlice'
 
 export default function LoadSpinner() {
-  const isLoading = useSelector((state: RootState) => state.ticker.isLoading);
+  const isLoading = useSelector(selectTickerIsLoading);
 
   if (isLoading)
     return (

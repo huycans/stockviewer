@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Highcharts from "highcharts/highstock";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import HighchartsReact from "highcharts-react-official";
-import { RootState } from "../redux/store";
+import {
+  selectTickerPriceHistory,
+  selectTickerInfo
+} from "../redux/slices/tickerSlice";
 
 export default function StockChart() {
-  const selectPriceHistory = useSelector(
-    (state: RootState) => state.ticker.priceHistory
-  );
-  const tickerInfo = useSelector((state: RootState) => state.ticker.info);
+  const selectPriceHistory = useSelector(selectTickerPriceHistory);
+  const tickerInfo = useSelector(selectTickerInfo);
 
   const options: Highcharts.Options = {
     title: {
@@ -16,7 +17,7 @@ export default function StockChart() {
       text: "<b>" + tickerInfo?.symbol + "</b>" + " price history",
       style: {
         fontSize: "1.5rem"
-    }
+      }
     },
     navigation: {
       bindingsClassName: "chart-container" // informs Stock Tools where to look for HTML elements for adding technical indicators, annotations etc.

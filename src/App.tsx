@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "./redux/store";
 import TickerInfo from "./components/TickerInfo";
 import Header from "./components/Header";
 import ErrorDisplay from "./components/ErrorDisplay";
 import StockChart from "./components/StockChart";
 import LoadSpinner from "./components/LoadSpinner";
+import {selectTickerInfo} from './redux/slices/tickerSlice'
 
 import "./App.scss";
 import Footer from "./components/Footer";
 
 function App() {
-  const tickerInfo = useSelector((state: RootState) => state.ticker.info);
+  const tickerInfo = useSelector(selectTickerInfo);
 
   const dispatch = useDispatch();
 

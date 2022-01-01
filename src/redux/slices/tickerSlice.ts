@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTickerInfo } from "../../API/tickerAPI";
 import { TickerInfoProps } from "../../components/TickerInfo";
+import { RootState } from "../store";
 
 export interface TickerState {
   name: string;
@@ -18,9 +19,12 @@ const initialState: TickerState = {
   isLoading: false
 };
 
+// Action creators are generated for each case reducer function
+// export const {  } = tickerSlice.actions
+
 export const getTickerInfo = createAsyncThunk(
   "ticker/get_info",
-  async (tickerName: string, {rejectWithValue}) => {
+  async (tickerName: string, { rejectWithValue }) => {
     try {
       const data = await fetchTickerInfo(tickerName);
       if (data.error) throw data.error;
@@ -52,7 +56,11 @@ export const tickerSlice = createSlice({
   }
 });
 
-// Action creators are generated for each case reducer function
-// export const {  } = tickerSlice.actions
+//selectors
+export const selectTickerInfo = (state: RootState) => state.ticker.info;
+export const selectTickerError = (state: RootState) => state.ticker.error;
+export const selectTickerIsLoading = (state: RootState) => state.ticker.isLoading;
+export const selectTickerPriceHistory = (state: RootState) => state.ticker.priceHistory;
+
 
 export default tickerSlice.reducer;
