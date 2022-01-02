@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTickerInfo } from '../../redux/slices/tickerSlice';
-import {formatDate, formatMoney, formatNumber} from '../utils'
+import { selectTickerInfo } from "../../redux/slices/tickerSlice";
+import { formatDate, formatMoney, formatNumber } from "../utils";
 
 export type EquityInfoType = {
   symbol: string;
@@ -110,7 +110,7 @@ export default function EquityInfo() {
       name: "Earning growth",
       value: earningsGrowth
     },
-    
+
     {
       name: "Beta (5Y Monthly)",
       value: beta
@@ -138,7 +138,7 @@ export default function EquityInfo() {
     {
       name: "Last Fiscal Year End",
       value: formatDate(lastFiscalYearEnd)
-    }  
+    }
   ];
 
   return (
@@ -148,7 +148,9 @@ export default function EquityInfo() {
           <h2>
             {longName}&nbsp;({symbol})
           </h2>
-          <span className="small-subtitle">Currency: {currency}. Home country: {country}. Sector: {sector}</span>
+          <span className="small-subtitle">
+            Currency: {currency}. Home country: {country}. Sector: {sector}
+          </span>
         </div>
         <div className="row">
           <h1>Current price: {currentPrice}</h1>

@@ -10,7 +10,7 @@ const formatNumber = (number: number)=>{
   }).format(number)
 }
 
-var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
+var MONEY_ABBR_SYMBOLS = ["", "K", "M", "B", "T"];
 
 function formatMoney(number: number){
 
@@ -21,7 +21,7 @@ function formatMoney(number: number){
     if(tier === 0) return number;
 
     // get suffix and determine scale
-    var suffix = SI_SYMBOL[tier];
+    var suffix = MONEY_ABBR_SYMBOLS[tier];
     var scale = Math.pow(10, tier * 3);
 
     // scale the number
