@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import TickerInfo from "./components/TickerInfo";
+import TickerInfo from "./components/TickerInfo/TickerInfo";
 import Header from "./components/Header";
 import ErrorDisplay from "./components/ErrorDisplay";
 import StockChart from "./components/StockChart";
