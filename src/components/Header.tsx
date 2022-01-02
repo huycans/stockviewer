@@ -20,6 +20,14 @@ export default function Header() {
     setTickerName(target.value);
   };
 
+  const handleKeyPressed = (event: React.KeyboardEvent) => {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.key === 'Enter' || event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        handleTickerSearch()
+      }
+  }
 
   return (
     <header className="row">
@@ -33,6 +41,7 @@ export default function Header() {
           type="text"
           onChange={handleChange}
           placeholder="Enter a stock ticker here"
+          onKeyUp={handleKeyPressed}
         />
         <button id="searchBtn" onClick={handleTickerSearch}>
           <FontAwesomeIcon icon={faSearch} />
