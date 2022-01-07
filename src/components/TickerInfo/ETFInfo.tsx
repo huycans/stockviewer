@@ -9,7 +9,7 @@ export type ETFInfoType = {
   sector: string;
   country: string;
   currency: string;
-  currentPrice: string;
+  regularMarketPrice: number;
   previousClose: number;
   quoteType: string;
   open: number;
@@ -54,7 +54,7 @@ export default function ETFInfo() {
     sector,
     country,
     currency,
-    currentPrice,
+    regularMarketPrice,
     previousClose,
     open,
     bid,
@@ -168,7 +168,7 @@ export default function ETFInfo() {
           </span>
         </div>
         <div className="row">
-          <h1>Current price: {currentPrice}</h1>
+          <h1>Current price: {regularMarketPrice}</h1>
         </div>
       </div>
 

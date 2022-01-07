@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTickerInfo } from "../../redux/slices/tickerSlice";
-import { formatDate, formatMoney, formatNumber } from "../utils";
+import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
 export type EquityInfoType = {
   symbol: string;
@@ -9,7 +9,7 @@ export type EquityInfoType = {
   sector: string;
   country: string;
   currency: string;
-  currentPrice: string;
+  currentPrice: number;
   previousClose: number;
   quoteType: string;
   open: number;
@@ -24,9 +24,9 @@ export type EquityInfoType = {
   volume: number;
   averageVolume: number;
   marketCap: number;
-  beta: string;
-  trailingPE: string;
-  trailingEps: string;
+  beta: number;
+  trailingPE: number;
+  trailingEps: number;
   exDividendDate: number;
   lastDividendDate: number;
   earningsGrowth: number;
@@ -108,21 +108,21 @@ export default function EquityInfo() {
     },
     {
       name: "Earning growth",
-      value: earningsGrowth
+      value: formatNumber(earningsGrowth)
     },
 
     {
       name: "Beta (5Y Monthly)",
-      value: beta
+      value: formatNumber(beta)
     },
     {
       name: "PE Ratio (TTM)",
-      value: trailingPE
+      value: formatNumber(trailingPE)
     },
 
     {
       name: "EPS (TTM)",
-      value: trailingEps
+      value: formatNumber(trailingEps)
     },
 
     {
@@ -164,7 +164,7 @@ export default function EquityInfo() {
               {table1Data.map((data) => (
                 <tr>
                   <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">{data.value}</td>
+                  <td className="fieldValue">{data.value === null ? "N/A" : data.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -176,7 +176,7 @@ export default function EquityInfo() {
               {table2Data.map((data) => (
                 <tr>
                   <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">{data.value}</td>
+                  <td className="fieldValue">{data.value === null ? "N/A" : data.value}</td>
                 </tr>
               ))}
             </tbody>

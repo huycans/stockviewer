@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTickerInfo } from "../../API/tickerAPI";
 import { EquityInfoType } from "../../components/TickerInfo/EquityInfo";
+import { ETFInfoType } from "../../components/TickerInfo/ETFInfo";
 import { FundInfoType } from "../../components/TickerInfo/FundInfo";
 import { RootState } from "../store";
 
 export interface TickerState {
   name: string;
-  info: EquityInfoType | FundInfoType | null;
+  info: EquityInfoType | FundInfoType | ETFInfoType | null;
   error: string;
   priceHistory: number[][];
   isLoading: boolean;

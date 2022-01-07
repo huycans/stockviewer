@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTickerInfo } from "../../redux/slices/tickerSlice";
-import { formatDate, formatMoney, formatNumber } from "../utils";
+import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
 export type FundInfoType = {
   symbol: string;
   longName: string;
   country: string;
   currency: string;
-  currentPrice: string;
+  regularMarketPrice: number;
   previousClose: number;
   quoteType: string;
   ytdReturn: number;
@@ -32,7 +32,7 @@ export default function FundInfo() {
     symbol,
     longName,
     currency,
-    currentPrice,
+    regularMarketPrice,
     previousClose,
     quoteType,
     ytdReturn,
@@ -60,7 +60,7 @@ export default function FundInfo() {
     },
     {
       name: "Expense Ratio (net)	",
-      value: formatNumber(annualReportExpenseRatio * 100) + "%"
+      value: formatPercent(annualReportExpenseRatio)
     },
 
     {
@@ -94,16 +94,16 @@ export default function FundInfo() {
 
     {
       name: "Yield",
-      value: formatNumber(fundYield * 100) + "%"
+      value: formatPercent(fundYield)
     },
     {
       name: "5y Average Return",
-      value: fiveYearAverageReturn? formatNumber(fiveYearAverageReturn * 100) + "%": null
+      value: formatPercent(fiveYearAverageReturn)
     },
 
     {
       name: "Holdings Turnover",
-      value: formatNumber(annualHoldingsTurnover * 100) + "%"
+      value: formatPercent(annualHoldingsTurnover)
     },
 
     {
@@ -127,7 +127,7 @@ export default function FundInfo() {
           <span className="small-subtitle">Currency: {currency}.</span>
         </div>
         <div className="row">
-          <h1>Current price: {currentPrice}</h1>
+          <h1>Current price: {regularMarketPrice}</h1>
         </div>
       </div>
 
