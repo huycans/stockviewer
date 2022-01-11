@@ -51,7 +51,6 @@ export default function ETFInfo() {
   const {
     symbol,
     longName,
-    sector,
     country,
     currency,
     regularMarketPrice,
@@ -128,11 +127,11 @@ export default function ETFInfo() {
 
     {
       name: "PE Ratio (TTM)",
-      value: formatPercent(trailingPE) 
+      value: formatPercent(trailingPE)
     },
     {
       name: "Yield",
-      value: formatPercent(etfYield )
+      value: formatPercent(etfYield)
     },
 
     {
@@ -164,7 +163,8 @@ export default function ETFInfo() {
             {longName}&nbsp;({symbol})
           </h2>
           <span className="small-subtitle">
-            Currency: {currency}. Home country: {country}. Sector: {sector}
+            Currency: {currency ? currency : "N/A"}. Home country:{" "}
+            {country ? country : "N/A"}
           </span>
         </div>
         <div className="row">
@@ -179,7 +179,9 @@ export default function ETFInfo() {
               {table1Data.map((data) => (
                 <tr>
                   <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">{data.value === null ? "N/A" : data.value}</td>
+                  <td className="fieldValue">
+                    {data.value === null ? "N/A" : data.value}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -191,7 +193,9 @@ export default function ETFInfo() {
               {table2Data.map((data) => (
                 <tr>
                   <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">{data.value === null ? "N/A" : data.value}</td>
+                  <td className="fieldValue">
+                    {data.value === null ? "N/A" : data.value}
+                  </td>
                 </tr>
               ))}
             </tbody>
