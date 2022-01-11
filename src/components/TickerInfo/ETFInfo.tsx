@@ -127,7 +127,7 @@ export default function ETFInfo() {
 
     {
       name: "PE Ratio (TTM)",
-      value: formatPercent(trailingPE)
+      value: formatNumber(trailingPE)
     },
     {
       name: "Yield",

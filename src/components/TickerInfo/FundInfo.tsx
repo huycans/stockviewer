@@ -59,7 +59,7 @@ export default function FundInfo() {
       value: formatNumber(ytdReturn)
     },
     {
-      name: "Expense Ratio (net)	",
+      name: "Expense Ratio (net)",
       value: formatPercent(annualReportExpenseRatio)
     },
 
