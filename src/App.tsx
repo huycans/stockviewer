@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import TickerInfo from "./components/TickerInfo/TickerInfo";
+import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
+import TickerInfo from "./components/TickerInfo/TickerInfo";
 import ErrorDisplay from "./components/ErrorDisplay";
 import StockChart from "./components/StockChart";
 import LoadSpinner from "./components/LoadSpinner";
-import {selectTickerInfo} from './redux/slices/tickerSlice'
+import Footer from "./components/Footer";
+import { selectTickerInfo } from "./redux/slices/tickerSlice";
 
 import "./App.scss";
-import Footer from "./components/Footer";
 
 function App() {
   const tickerInfo = useSelector(selectTickerInfo);
@@ -20,15 +22,19 @@ function App() {
       <div className="App container">
         <Header />
         <ErrorDisplay />
+        <LoadSpinner />
         <main>
-          <LoadSpinner />
-          {tickerInfo ? <TickerInfo {...tickerInfo} /> : null}
+          {tickerInfo ? (
+            <Routes>
+              <Route path="/" element={<TickerInfo {...tickerInfo} />} />
+              <Route path="chart" element={<StockChart />} />
+            </Routes>
+          ) : null}
           <hr />
-          {tickerInfo ? <StockChart /> : null}
         </main>
         <div className="push"></div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
