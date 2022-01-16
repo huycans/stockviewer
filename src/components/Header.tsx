@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import classnames from "classnames";
 
 import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
 import stockviewerLogo from "../assets/img/stockviewer.png";
@@ -30,6 +31,16 @@ export default function Header() {
       handleTickerSearch();
     }
   };
+
+  const navItems = [
+    { to: "/", name: "Summary" },
+    {
+      to: "/chart",
+      name: "Chart"
+    }
+  ];
+
+  const location = useLocation();
 
   return (
     <header className="row">
@@ -59,16 +70,20 @@ export default function Header() {
       <div className="row">
         {tickerInfo ? (
           <ul className="nav nav-tabs justify-content-center">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
-                Summary
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/chart">
-                Chart
-              </Link>
-            </li>
+            {navItems.map((navItem) => {
+              return (
+                <li className="nav-item" key={navItem.name}>
+                  <Link
+                    className={classnames("nav-link", {
+                      active: location.pathname === navItem.to
+                    })}
+                    to={navItem.to}
+                  >
+                    {navItem.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         ) : null}
       </div>
