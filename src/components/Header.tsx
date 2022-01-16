@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 
 import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
@@ -40,7 +40,6 @@ export default function Header() {
     }
   ];
 
-  const location = useLocation();
 
   return (
     <header className="row">
@@ -73,14 +72,14 @@ export default function Header() {
             {navItems.map((navItem) => {
               return (
                 <li className="nav-item" key={navItem.name}>
-                  <Link
-                    className={classnames("nav-link", {
-                      active: location.pathname === navItem.to
+                  <NavLink
+                    className={({isActive}) => classnames("nav-link", {
+                      active: isActive
                     })}
                     to={navItem.to}
                   >
                     {navItem.name}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}
