@@ -13,10 +13,6 @@ import { selectTickerInfo } from "./redux/slices/tickerSlice";
 import "./App.scss";
 
 function App() {
-  const tickerInfo = useSelector(selectTickerInfo);
-
-  const dispatch = useDispatch();
-
   return (
     <>
       <div className="App container">
@@ -24,12 +20,10 @@ function App() {
         <ErrorDisplay />
         <LoadSpinner />
         <main>
-          {tickerInfo ? (
-            <Routes>
-              <Route path="/" element={<TickerInfo {...tickerInfo} />} />
-              <Route path="chart" element={<StockChart />} />
-            </Routes>
-          ) : null}
+          <Routes>
+            <Route path="/" element={<TickerInfo />} />
+            <Route path="chart" element={<StockChart />} />
+          </Routes>
           <hr />
         </main>
         <div className="push"></div>

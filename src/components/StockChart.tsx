@@ -108,7 +108,9 @@ export default function StockChart() {
   };
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
-
+  if (tickerInfo === null){
+    return null
+  }
   return (
     <div id="chart-container">
       <HighchartsReact
