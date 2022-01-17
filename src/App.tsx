@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -8,9 +7,9 @@ import ErrorDisplay from "./components/ErrorDisplay";
 import StockChart from "./components/StockChart";
 import LoadSpinner from "./components/LoadSpinner";
 import Footer from "./components/Footer";
-import { selectTickerInfo } from "./redux/slices/tickerSlice";
 
 import "./App.scss";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -22,7 +21,9 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<TickerInfo />} />
-            <Route path="chart" element={<StockChart />} />
+            <Route path="/summary" element={<TickerInfo />} />
+            <Route path="/chart" element={<StockChart />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <hr />
         </main>
