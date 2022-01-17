@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 
 import "./App.scss";
 import NotFound from "./components/NotFound";
+import Welcome from "./components/Welcome";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <LoadSpinner />
         <main>
           <Routes>
-            <Route path="/" element={<TickerInfo />} />
+            <Route path="/" element={<Welcome />} />
             <Route path="/summary" element={<TickerInfo />} />
             <Route path="/chart" element={<StockChart />} />
             <Route path="*" element={<NotFound />} />
