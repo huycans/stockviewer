@@ -31,15 +31,13 @@ export type Response = {
   error: ServerError;
 };
 
-// Action creators are generated for each case reducer function
-// export const {  } = tickerSlice.actions
-
 export const getTickerInfo = createAsyncThunk(
-  "ticker/get_info",
-  async (tickerName: string, { rejectWithValue }) => {
+  "ticker/getInfo",
+  async (tickerName: string, { rejectWithValue, dispatch }) => {
     try {
       const response: Response = await fetchTickerInfo(tickerName);
       if (response.status === "ok") {
+        dispatch(clearTickerError())
         return response.data;
       } else if (response.error) throw response.error;
     } catch (error) {
@@ -51,7 +49,11 @@ export const getTickerInfo = createAsyncThunk(
 export const tickerSlice = createSlice({
   name: "ticker",
   initialState,
-  reducers: {},
+  reducers: {
+    clearTickerError(state){
+      state.error = ""
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTickerInfo.pending, (state, action) => {
@@ -70,6 +72,9 @@ export const tickerSlice = createSlice({
       });
   }
 });
+
+// Action creators are generated for each case reducer function
+export const { clearTickerError } = tickerSlice.actions
 
 //selectors
 export const selectTickerInfo = (state: RootState) => state.ticker.info;
