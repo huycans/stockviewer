@@ -1,40 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTickerInfo } from "../../redux/slices/tickerSlice";
+import { selectTickerInfo, TickerInfoType } from '../../redux/slices/tickerSlice';
 import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
-export type EquityInfoType = {
-  symbol: string;
-  longName: string;
-  sector: string;
-  country: string;
-  currency: string;
-  currentPrice: number;
-  previousClose: number;
-  quoteType: string;
-  open: number;
-  bid: number;
-  bidSize: number;
-  ask: number;
-  askSize: number;
-  dayLow: number;
-  dayHigh: number;
-  fiftyTwoWeekLow: number;
-  fiftyTwoWeekHigh: number;
-  volume: number;
-  averageVolume: number;
-  marketCap: number;
-  beta: number;
-  trailingPE: number;
-  trailingEps: number;
-  exDividendDate: number;
-  lastDividendDate: number;
-  earningsGrowth: number;
-  lastFiscalYearEnd: number;
-};
-
 export default function EquityInfo() {
-  const tickerInfo = useSelector(selectTickerInfo) as EquityInfoType;
+  const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
   const {
     symbol,
     longName,

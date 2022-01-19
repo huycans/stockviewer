@@ -1,53 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTickerInfo } from "../../redux/slices/tickerSlice";
+import { selectTickerInfo, TickerInfoType } from '../../redux/slices/tickerSlice';
 import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
-export type ETFInfoType = {
-  symbol: string;
-  longName: string;
-  sector: string;
-  country: string;
-  currency: string;
-  regularMarketPrice: number;
-  previousClose: number;
-  quoteType: string;
-  open: number;
-  bid: number;
-  bidSize: number;
-  ask: number;
-  askSize: number;
-  dayLow: number;
-  dayHigh: number;
-  fiftyTwoWeekLow: number;
-  fiftyTwoWeekHigh: number;
-  volume: number;
-  averageVolume: number;
-  marketCap: number;
-  trailingPE: number;
-  trailingEps: string;
-  exDividendDate: number;
-  lastDividendDate: number;
-  earningsGrowth: number;
-  lastFiscalYearEnd: number;
-  ytdReturn: number;
-  annualReportExpenseRatio: number;
-  category: string;
-  lastCapGain: number;
-  morningStarOverallRating: number;
-  morningStarRiskRating: number;
-  totalAssets: number;
-  beta: number;
-  yield: number;
-  fiveYearAverageReturn: number;
-  annualHoldingsTurnover: number;
-  lastDividendValue: number;
-  fundInceptionDate: number;
-  navPrice: number;
-};
-
 export default function ETFInfo() {
-  const tickerInfo = useSelector(selectTickerInfo) as ETFInfoType;
+  const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
   const {
     symbol,
     longName,
