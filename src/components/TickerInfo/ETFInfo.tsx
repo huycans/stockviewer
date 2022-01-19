@@ -177,7 +177,7 @@ export default function ETFInfo() {
           <table>
             <tbody>
               {table1Data.map((data) => (
-                <tr>
+                <tr key={data.name}>
                   <td className="fieldName">{data.name}</td>
                   <td className="fieldValue">
                     {data.value === null ? "N/A" : data.value}
