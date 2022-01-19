@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import classnames from "classnames";
 
 import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
@@ -13,9 +13,11 @@ export default function Header() {
   const tickerInfo = useSelector(selectTickerInfo);
 
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const handleTickerSearch = () => {
     dispatch(getTickerInfo(tickerName));
+    navigate("/summary");
   };
 
   const handleChange = (event: React.ChangeEvent) => {
@@ -33,13 +35,12 @@ export default function Header() {
   };
 
   const navItems = [
-    { to: "/", name: "Summary" },
+    { to: "/summary", name: "Summary" },
     {
       to: "/chart",
       name: "Chart"
     }
   ];
-
 
   return (
     <header className="row">
@@ -73,9 +74,11 @@ export default function Header() {
               return (
                 <li className="nav-item" key={navItem.name}>
                   <NavLink
-                    className={({isActive}) => classnames("nav-link", {
-                      active: isActive
-                    })}
+                    className={({ isActive }) =>
+                      classnames("nav-link", {
+                        active: isActive
+                      })
+                    }
                     to={navItem.to}
                   >
                     {navItem.name}

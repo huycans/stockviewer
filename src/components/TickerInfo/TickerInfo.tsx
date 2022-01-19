@@ -5,11 +5,9 @@ import ETFInfo from './ETFInfo';
 import { useSelector } from "react-redux";
 import { selectTickerInfo } from "../../redux/slices/tickerSlice";
 
-
-
 export default function TickerInfo() {
   const tickerInfo = useSelector(selectTickerInfo);
-
+  
   if (tickerInfo !== null){
     const {
       quoteType
