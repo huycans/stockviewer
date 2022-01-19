@@ -35,10 +35,17 @@ export default function Header() {
   };
 
   const navItems = [
-    { to: "/summary", name: "Summary" },
+    {
+      to: "/summary",
+      name: "Summary"
+    },
     {
       to: "/chart",
       name: "Chart"
+    },
+    {
+      to: "/profile",
+      name: "Profile"
     }
   ];
 

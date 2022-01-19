@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import "./App.scss";
 import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Welcome />} />
             <Route path="/summary" element={<TickerInfo />} />
             <Route path="/chart" element={<StockChart />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <hr />
