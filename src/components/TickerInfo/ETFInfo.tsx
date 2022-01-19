@@ -129,7 +129,7 @@ export default function ETFInfo() {
         </div>
       </div>
 
-      <div className="row justify-content-around detailedInfo">
+      <div className="row justify-content-around">
         <div className="col" id="table_1">
           <table>
             <tbody>

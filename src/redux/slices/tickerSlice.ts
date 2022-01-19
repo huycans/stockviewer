@@ -44,6 +44,8 @@ export interface TickerInfoType {
   fundInceptionDate: number;
   navPrice: number;
   address1: string;
+  address2: string;
+  address3: string;
   city: string;
   state: string;
   zip: string;
@@ -51,6 +53,8 @@ export interface TickerInfoType {
   website: string;
   industry: string;
   fullTimeEmployees: number;
+  longBusinessSummary: string;
+  fundFamily: string;
 }
 export interface TickerState {
   name: string;
