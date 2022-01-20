@@ -55,6 +55,7 @@ export interface TickerInfoType {
   fullTimeEmployees: number;
   longBusinessSummary: string;
   fundFamily: string;
+  legalType: string;
 }
 export interface TickerState {
   name: string;
