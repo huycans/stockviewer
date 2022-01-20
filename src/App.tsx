@@ -20,7 +20,7 @@ function App() {
         <Header />
         <ErrorDisplay />
         <LoadSpinner />
-        <main>
+        <main className="mainContent">
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/summary" element={<TickerInfo />} />

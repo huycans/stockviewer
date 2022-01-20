@@ -112,7 +112,7 @@ export default function EquityInfo() {
   ];
 
   return (
-    <div className="tickerInfo">
+    <div>
       <div className="row basicInfo">
         <div className="row">
           <h2>

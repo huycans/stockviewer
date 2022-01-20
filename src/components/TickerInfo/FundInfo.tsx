@@ -95,7 +95,7 @@ export default function FundInfo() {
   ];
 
   return (
-    <div className="tickerInfo">
+    <div>
       <div className="row basicInfo">
         <div className="row">
           <h2>

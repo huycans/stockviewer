@@ -113,7 +113,7 @@ export default function ETFInfo() {
   ];
 
   return (
-    <div className="tickerInfo">
+    <div>
       <div className="row basicInfo">
         <div className="row">
           <h2>
