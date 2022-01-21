@@ -49,6 +49,11 @@ export default function Header() {
     }
   ];
 
+  if (tickerInfo?.quoteType === "ETF"|| tickerInfo?.quoteType === "MUTUALFUND") navItems.push({
+    to: "/holdings",
+    name: "Holdings"
+  })
+
   return (
     <header className="row">
       <div className="row">

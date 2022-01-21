@@ -9,7 +9,7 @@ export interface TickerInfoType {
   currency: string;
   currentPrice: number;
   previousClose: number;
-  quoteType: string;
+  quoteType: "EQUITY" | "MUTUALFUND" | "ETF";
   open: number;
   bid: number;
   bidSize: number;
@@ -56,6 +56,12 @@ export interface TickerInfoType {
   longBusinessSummary: string;
   fundFamily: string;
   legalType: string;
+  bondPosition: number;
+  cashPosition: number;
+  stockPosition: number;
+  preferredPosition: number;
+  convertiblePosition: number;
+  otherPosition: number;
 }
 export interface TickerState {
   name: string;
