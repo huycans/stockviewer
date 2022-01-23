@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { selectTickerInfo, TickerInfoType } from "../redux/slices/tickerSlice";
+import { formatNumber } from "./utils";
+import InfoTable from "./InfoTable";
 
 export default function Holdings() {
   const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
@@ -26,8 +28,31 @@ export default function Holdings() {
     stockPosition,
     preferredPosition,
     convertiblePosition,
-    otherPosition
+    otherPosition,
+    bondHoldings,
+    equityHoldings
   } = tickerInfo;
+  const {
+    creditQuality,
+    creditQualityCat,
+    duration,
+    durationCat,
+    maturity,
+    maturityCat
+  } = bondHoldings;
+
+  const {
+    priceToBook,
+    priceToBookCat,
+    priceToCashflow,
+    priceToCashflowCat,
+    priceToEarnings,
+    priceToEarningsCat,
+    priceToSales,
+    priceToSalesCat,
+    threeYearEarningsGrowth,
+    threeYearEarningsGrowthCat
+  } = equityHoldings;
 
   const fundCompositionPieData = [
     {
@@ -89,7 +114,6 @@ export default function Holdings() {
     plotOptions: {
       pie: {
         allowPointSelect: true,
-        cursor: "pointer",
         dataLabels: {
           enabled: true,
           format: "<b>{point.name}</b>: {point.percentage:.1f} %"
@@ -114,6 +138,43 @@ export default function Holdings() {
     />
   );
 
+  const bondholdingTable = [
+    {
+      name: "Credit Quality",
+      value: creditQuality
+    },
+    {
+      name: "Duration",
+      value: formatNumber(duration)
+    },
+    {
+      name: "Maturity",
+      value: formatNumber(maturity)
+    }
+  ];
+
+  const stockHoldingTable = [
+    {
+      name: "Price/Book",
+      value: formatNumber(priceToBook)
+    },
+    {
+      name: "Price/Cashflow",
+      value: formatNumber(priceToCashflow)
+    },
+    {
+      name: "Price/Earnings",
+      value: formatNumber(priceToEarnings)
+    },
+    {
+      name: "Price/Sales",
+      value: formatNumber(priceToSales)
+    },
+    {
+      name: "3 Year Earnings Growth",
+      value: formatNumber(threeYearEarningsGrowth)
+    }
+  ];
   return (
     <div className="container">
       <div className="row" id="fundCompositionPieChart">
@@ -122,20 +183,13 @@ export default function Holdings() {
           {fundCompositionPieChart}
         </div>
         <div className="col-md-6">
-          <h3 className="fw-bold">Bond holding table</h3>
-          <div>Data</div>
-          <h3 className="fw-bold">Stock holding table</h3>
-          <div>Data</div>
+          <h3 className="fw-bold">Bond holdings</h3>
+          <InfoTable tableData={bondholdingTable} />
+          <h3 className="fw-bold">Equity holdings</h3>
+          <InfoTable tableData={stockHoldingTable} />
         </div>
       </div>
       <div className="row">
-        <p>
-          Display a pie chart of bond/equity portion (bondPosition,
-          cashPosition, stockPosition, preferredPosition, convertiblePosition,
-          otherPosition)
-        </p>
-        <p>Bond holdings (bondHoldings{})</p>
-        <p>Equity holdings (equityHoldings{})</p>
         <p>Top holdings (holdings[{}])</p>
         <p>Bond ratings (bondRatings[])</p>
       </div>

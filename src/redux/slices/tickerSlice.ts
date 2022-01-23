@@ -62,6 +62,28 @@ export interface TickerInfoType {
   preferredPosition: number;
   convertiblePosition: number;
   otherPosition: number;
+  bondHoldings: {
+    creditQuality: string;
+    creditQualityCat: string;
+    duration: number;
+    durationCat: number;
+    maturity: number;
+    maturityCat: number;
+  };
+  equityHoldings: {
+    medianMarketCap: number;
+    medianMarketCapCat: number;
+    priceToBook: number;
+    priceToBookCat: number;
+    priceToCashflow: number;
+    priceToCashflowCat: number;
+    priceToEarnings: number;
+    priceToEarningsCat: number;
+    priceToSales: number;
+    priceToSalesCat: number;
+    threeYearEarningsGrowth: number;
+    threeYearEarningsGrowthCat: number;
+  }
 }
 export interface TickerState {
   name: string;
