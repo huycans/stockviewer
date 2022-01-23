@@ -83,7 +83,41 @@ export interface TickerInfoType {
     priceToSalesCat: number;
     threeYearEarningsGrowth: number;
     threeYearEarningsGrowthCat: number;
-  }
+  };
+  holdings: {
+    holdingName: string;
+    holdingPercent: number;
+    symbol: string;
+  }[];
+  bondRatings: [
+    {
+      bb: number;
+    },
+    {
+      aa: number;
+    },
+    {
+      aaa: number;
+    },
+    {
+      a: number;
+    },
+    {
+      other: number;
+    },
+    {
+      b: number;
+    },
+    {
+      bbb: number;
+    },
+    {
+      below_b: number;
+    },
+    {
+      us_government: number;
+    }
+  ];
 }
 export interface TickerState {
   name: string;
@@ -142,6 +176,17 @@ export const tickerSlice = createSlice({
       .addCase(getTickerInfo.fulfilled, (state, action) => {
         let payload = action.payload;
         state.info = payload.info;
+        if (state.info?.bondRatings) {
+          state.info.bondRatings = state.info.bondRatings.sort(
+            (rating1, rating2) => {
+              const key1 = Object.keys(rating1)[0].toUpperCase();
+              const key2 = Object.keys(rating2)[0].toUpperCase();
+              if (key1 > key2) return -1;
+              else if (key1 < key2) return 1;
+              else return 0;
+            }
+          );
+        }
         state.priceHistory = payload.price_history;
         state.isLoading = false;
       })

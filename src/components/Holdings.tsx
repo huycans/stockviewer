@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { selectTickerInfo, TickerInfoType } from "../redux/slices/tickerSlice";
-import { formatNumber } from "./utils";
+import { formatNumber, formatPercent } from "./utils";
 import InfoTable from "./InfoTable";
 
 export default function Holdings() {
@@ -22,7 +22,7 @@ export default function Holdings() {
     black: "#000"
   };
 
-  const {
+  let {
     bondPosition,
     cashPosition,
     stockPosition,
@@ -30,8 +30,11 @@ export default function Holdings() {
     convertiblePosition,
     otherPosition,
     bondHoldings,
-    equityHoldings
+    equityHoldings,
+    holdings,
+    bondRatings
   } = tickerInfo;
+
   const {
     creditQuality,
     creditQualityCat,
@@ -92,19 +95,24 @@ export default function Holdings() {
       selected: false
     }
   ];
-  const options: Highcharts.Options = {
+
+  const bondRatingPieData = bondRatings
+    .map((rating, index) => {
+      return {
+        name: Object.keys(rating)[0].toUpperCase(),
+        y: Object.values(rating)[0],
+        colors: Object.values(colors)[index],
+        selected: false
+      };
+    });
+
+  let genericOptions: Highcharts.Options = {
     chart: {
       plotShadow: false,
       type: "pie"
     },
-    title: {
-      text: "Fund composition"
-    },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-    },
-    navigation: {
-      bindingsClassName: "fundCompositionPieChart" // informs Highcharts where to look for HTML elements for adding technical indicators, annotations etc.
     },
     accessibility: {
       point: {
@@ -119,22 +127,58 @@ export default function Holdings() {
           format: "<b>{point.name}</b>: {point.percentage:.1f} %"
         }
       }
-    },
+    }
+  };
+
+  let fundCompositionPieOptions = {
+    ...genericOptions,
     series: [
       {
         name: "Percent",
         type: "pie",
         data: fundCompositionPieData
       }
-    ]
+    ],
+    title: {
+      text: "Fund composition"
+    },
+    navigation: {
+      bindingsClassName: "fundCompositionPieChart" // informs Highcharts where to look for HTML elements for adding technical indicators, annotations etc.
+    }
   };
 
-  const pieChartRef = useRef<HighchartsReact.RefObject>(null);
+  const fundCompositionPieChartRef = useRef<HighchartsReact.RefObject>(null);
   const fundCompositionPieChart = (
     <HighchartsReact
       highcharts={Highcharts}
-      options={options}
-      ref={pieChartRef}
+      options={fundCompositionPieOptions}
+      ref={fundCompositionPieChartRef}
+    />
+  );
+
+  let bondRatingPieOptions = {
+    ...genericOptions,
+    series: [
+      {
+        name: "Percent",
+        type: "pie",
+        data: bondRatingPieData
+      }
+    ],
+    title: {
+      text: "Bond ratings"
+    },
+    navigation: {
+      bindingsClassName: "bondRatingPieChart" // informs Highcharts where to look for HTML elements for adding technical indicators, annotations etc.
+    }
+  };
+
+  const bondRatingPieChartRef = useRef<HighchartsReact.RefObject>(null);
+  const bondRatingPieChart = (
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={bondRatingPieOptions}
+      ref={bondRatingPieChartRef}
     />
   );
 
@@ -175,24 +219,45 @@ export default function Holdings() {
       value: formatNumber(threeYearEarningsGrowth)
     }
   ];
+
+  let topHoldingPercentage = 0;
+
+  const holdingsTable = holdings.map((holding) => {
+    topHoldingPercentage += holding.holdingPercent;
+    return {
+      name: holding.holdingName + "(" + holding.symbol + ")",
+      value: formatPercent(holding.holdingPercent)
+    };
+  });
+
   return (
     <div className="container">
-      <div className="row" id="fundCompositionPieChart">
-        <div className="col-md-6">
+      <div className="row holding-section">
+        <div className="col-md-6" id="fundCompositionPieChart">
           <h3 className="fw-bold">Fund composition</h3>
           {fundCompositionPieChart}
         </div>
         <div className="col-md-6">
-          <h3 className="fw-bold">Bond holdings</h3>
-          <InfoTable tableData={bondholdingTable} />
           <h3 className="fw-bold">Equity holdings</h3>
           <InfoTable tableData={stockHoldingTable} />
+          <h3 className="fw-bold">Bond holdings</h3>
+          <InfoTable tableData={bondholdingTable} />
         </div>
       </div>
-      <div className="row">
-        <p>Top holdings (holdings[{}])</p>
-        <p>Bond ratings (bondRatings[])</p>
+      <div className="row holding-section">
+        <div className="col-md-6">
+          <h3 className="fw-bold">
+            Top {holdingsTable.length} holdings (
+            {formatPercent(topHoldingPercentage)} of Total Assets)
+          </h3>
+          <InfoTable tableData={holdingsTable} />
+        </div>
+        <div className="col-md-6" id="bondRatingPieChart">
+          <h3 className="fw-bold">Bond ratings</h3>
+          {bondRatingPieChart}
+        </div>
       </div>
+      {/* Do sectorWeightings */}
     </div>
   );
 }
