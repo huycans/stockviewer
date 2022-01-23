@@ -9,7 +9,7 @@ import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
 import stockviewerLogo from "../assets/img/stockviewer.png";
 
 export default function Header() {
-  const [tickerName, setTickerName] = useState("aapl");
+  const [tickerName, setTickerName] = useState("VTHRX");
   const tickerInfo = useSelector(selectTickerInfo);
 
   const dispatch = useDispatch();

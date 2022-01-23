@@ -4,6 +4,7 @@ import {
   selectTickerInfo,
   TickerInfoType
 } from "../../redux/slices/tickerSlice";
+import InfoTable from "../InfoTable";
 import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
 export default function ETFProfile() {
@@ -69,40 +70,20 @@ export default function ETFProfile() {
           <h3 className="fw-bold">{longName}</h3>
           {phone}
           <br />
+          <br />
+          <h3 className="fw-bold">Fund description</h3>
           {longBusinessSummary}
         </div>
 
         <div className="col-md-6 col-12">
-          <div className="col" id="table_1">
+          <div className="col">
             <h3 className="fw-bold">Fund Overview</h3>
-            <table>
-              <tbody>
-                {table1Data.map((data) => (
-                  <tr>
-                    <td className="fieldName">{data.name}</td>
-                    <td className="fieldValue">
-                      {data.value === null ? "N/A" : data.value}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <InfoTable tableData={table1Data}/>
           </div>
           <br />
-          <div className="col" id="table_1">
+          <div className="col">
             <h3 className="fw-bold">Fund Operations</h3>
-            <table>
-              <tbody>
-                {table2Data.map((data) => (
-                  <tr>
-                    <td className="fieldName">{data.name}</td>
-                    <td className="fieldValue">
-                      {data.value === null ? "N/A" : data.value}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <InfoTable tableData={table2Data}/>
           </div>
         </div>
       </div>

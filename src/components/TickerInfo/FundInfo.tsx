@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTickerInfo, TickerInfoType } from '../../redux/slices/tickerSlice';
+import InfoTable from "../InfoTable";
 import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
 
 export default function FundInfo() {
@@ -109,33 +110,11 @@ export default function FundInfo() {
       </div>
 
       <div className="row justify-content-around detailedInfo">
-        <div className="col" id="table_1">
-          <table>
-            <tbody>
-              {table1Data.map((data) => (
-                <tr key={data.name}>
-                  <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">
-                    {data.value === null ? "N/A" : data.value}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="col">
+          <InfoTable tableData={table1Data}/>
         </div>
-        <div className="col" id="table_2">
-          <table>
-            <tbody>
-              {table2Data.map((data) => (
-                <tr key={data.name}>
-                  <td className="fieldName">{data.name}</td>
-                  <td className="fieldValue">
-                    {data.value === null ? "N/A" : data.value}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="col">
+          <InfoTable tableData={table2Data}/>
         </div>
       </div>
     </div>
