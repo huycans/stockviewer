@@ -32,7 +32,8 @@ export default function Holdings() {
     bondHoldings,
     equityHoldings,
     holdings,
-    bondRatings
+    bondRatings,
+    sectorWeightings
   } = tickerInfo;
 
   const {
@@ -96,15 +97,28 @@ export default function Holdings() {
     }
   ];
 
-  const bondRatingPieData = bondRatings
-    .map((rating, index) => {
-      return {
-        name: Object.keys(rating)[0].toUpperCase(),
-        y: Object.values(rating)[0],
-        colors: Object.values(colors)[index],
-        selected: false
-      };
-    });
+  const bondRatingPieData = bondRatings.map((rating, index) => {
+    return {
+      name: Object.keys(rating)[0].toUpperCase(),
+      y: Object.values(rating)[0],
+      colors: Object.values(colors)[index],
+      selected: false
+    };
+  });
+
+  let sectorWeightingsBarData = {
+    categories: [] as string[],
+    data: [] as number[]
+  };
+
+  sectorWeightings.forEach((sector, index) => {
+    sectorWeightingsBarData.categories.push(
+      Object.keys(sector)[0].toUpperCase()
+    );
+    sectorWeightingsBarData.data.push(Math.round((Object.values(sector)[0])*100*100)/100);
+  });
+
+  console.log(sectorWeightingsBarData);
 
   let genericOptions: Highcharts.Options = {
     chart: {
@@ -133,7 +147,7 @@ export default function Holdings() {
     }
   };
 
-  let fundCompositionPieOptions = {
+  let fundCompositionPieOptions: Highcharts.Options = {
     ...genericOptions,
     series: [
       {
@@ -159,7 +173,7 @@ export default function Holdings() {
     />
   );
 
-  let bondRatingPieOptions = {
+  let bondRatingPieOptions: Highcharts.Options = {
     ...genericOptions,
     series: [
       {
@@ -182,6 +196,71 @@ export default function Holdings() {
       highcharts={Highcharts}
       options={bondRatingPieOptions}
       ref={bondRatingPieChartRef}
+    />
+  );
+
+  const sectorWeightingsOptions: Highcharts.Options = {
+    chart: {
+      type: "bar"
+    },
+    title: {
+      text: ""
+    },
+    subtitle: {
+      text: ''
+    },
+    navigation: {
+      bindingsClassName: "sectorWeightingsBarChart"
+    },
+    xAxis: {
+      categories: sectorWeightingsBarData.categories,
+      title: {
+        text: ""
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Percentage",
+        align: "middle"
+      },
+      labels: {
+        overflow: "justify"
+      }
+    },
+    legend: {
+      enabled: false,
+    },
+    tooltip: {
+      // pointFormat: "<b>{series.name} {point.y:.1f}%</b>"
+      pointFormat: '{point.y}%',
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: false
+        }
+      }
+    },
+    credits: {
+      enabled: false
+    },
+    series: [
+      {
+        showInLegend: false,
+        type:"bar",
+        data: sectorWeightingsBarData.data,
+        name: "Weight"
+      }
+    ]
+  };
+  
+  const sectorWeightingsBarChartRef = useRef<HighchartsReact.RefObject>(null);
+  const sectorWeightingsBarChart = (
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={sectorWeightingsOptions}
+      ref={sectorWeightingsBarChartRef}
     />
   );
 
@@ -228,7 +307,9 @@ export default function Holdings() {
   const holdingsTable = holdings.map((holding) => {
     topHoldingPercentage += holding.holdingPercent;
     return {
-      name: holding.holdingName + (holding.symbol ? (" (" + holding.symbol + ")"): ""),
+      name:
+        holding.holdingName +
+        (holding.symbol ? " (" + holding.symbol + ")" : ""),
       value: formatPercent(holding.holdingPercent)
     };
   });
@@ -256,13 +337,20 @@ export default function Holdings() {
         <div className="col-md-6">
           <h3 className="fw-bold">Equity holdings</h3>
           <InfoTable tableData={stockHoldingTable} />
-          <br/>
+          <br />
           <h3 className="fw-bold">Bond holdings</h3>
           <InfoTable tableData={bondholdingTable} />
         </div>
-        
       </div>
-      {/* Do sectorWeightings */}
+      <div className="row holding-section">
+        <div className="col-md-12" id="sectorWeightingsBarChart">
+          <h3 className="fw-bold">
+            Sector weightings
+          </h3>
+          {sectorWeightingsBarChart}
+        </div>
+      </div>
+      
     </div>
   );
 }

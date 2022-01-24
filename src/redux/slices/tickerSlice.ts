@@ -118,6 +118,41 @@ export interface TickerInfoType {
       us_government: number;
     }
   ];
+  sectorWeightings: [
+    {
+      realestate: number;
+    },
+    {
+      consumer_cyclical: number;
+    },
+    {
+      basic_materials: number;
+    },
+    {
+      consumer_defensive: number;
+    },
+    {
+      technology: number;
+    },
+    {
+      communication_services: number;
+    },
+    {
+      financial_services: number;
+    },
+    {
+      utilities: number;
+    },
+    {
+      industrials: number;
+    },
+    {
+      energy: number;
+    },
+    {
+      healthcare: number;
+    }
+  ];
 }
 export interface TickerState {
   name: string;
