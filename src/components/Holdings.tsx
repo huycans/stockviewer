@@ -111,6 +111,9 @@ export default function Holdings() {
       plotShadow: false,
       type: "pie"
     },
+    credits: {
+      enabled: false
+    },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
     },
@@ -140,7 +143,7 @@ export default function Holdings() {
       }
     ],
     title: {
-      text: "Fund composition"
+      text: ""
     },
     navigation: {
       bindingsClassName: "fundCompositionPieChart" // informs Highcharts where to look for HTML elements for adding technical indicators, annotations etc.
@@ -166,7 +169,7 @@ export default function Holdings() {
       }
     ],
     title: {
-      text: "Bond ratings"
+      text: ""
     },
     navigation: {
       bindingsClassName: "bondRatingPieChart" // informs Highcharts where to look for HTML elements for adding technical indicators, annotations etc.
@@ -225,7 +228,7 @@ export default function Holdings() {
   const holdingsTable = holdings.map((holding) => {
     topHoldingPercentage += holding.holdingPercent;
     return {
-      name: holding.holdingName + "(" + holding.symbol + ")",
+      name: holding.holdingName + (holding.symbol ? (" (" + holding.symbol + ")"): ""),
       value: formatPercent(holding.holdingPercent)
     };
   });
@@ -237,11 +240,9 @@ export default function Holdings() {
           <h3 className="fw-bold">Fund composition</h3>
           {fundCompositionPieChart}
         </div>
-        <div className="col-md-6">
-          <h3 className="fw-bold">Equity holdings</h3>
-          <InfoTable tableData={stockHoldingTable} />
-          <h3 className="fw-bold">Bond holdings</h3>
-          <InfoTable tableData={bondholdingTable} />
+        <div className="col-md-6" id="bondRatingPieChart">
+          <h3 className="fw-bold">Bond ratings</h3>
+          {bondRatingPieChart}
         </div>
       </div>
       <div className="row holding-section">
@@ -252,10 +253,14 @@ export default function Holdings() {
           </h3>
           <InfoTable tableData={holdingsTable} />
         </div>
-        <div className="col-md-6" id="bondRatingPieChart">
-          <h3 className="fw-bold">Bond ratings</h3>
-          {bondRatingPieChart}
+        <div className="col-md-6">
+          <h3 className="fw-bold">Equity holdings</h3>
+          <InfoTable tableData={stockHoldingTable} />
+          <br/>
+          <h3 className="fw-bold">Bond holdings</h3>
+          <InfoTable tableData={bondholdingTable} />
         </div>
+        
       </div>
       {/* Do sectorWeightings */}
     </div>

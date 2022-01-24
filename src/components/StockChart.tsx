@@ -19,6 +19,9 @@ export default function StockChart() {
         fontSize: "1.5rem"
       }
     },
+    credits: {
+      enabled: false
+    },
     navigation: {
       bindingsClassName: "chart-container" // informs Stock Tools where to look for HTML elements for adding technical indicators, annotations etc.
     },
