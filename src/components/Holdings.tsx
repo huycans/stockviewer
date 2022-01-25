@@ -247,6 +247,9 @@ export default function Holdings() {
     },
     series: [
       {
+        dataSorting: {
+          enabled: true
+        },
         showInLegend: false,
         type:"bar",
         data: sectorWeightingsBarData.data,
