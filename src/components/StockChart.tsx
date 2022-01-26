@@ -6,6 +6,7 @@ import {
   selectTickerPriceHistory,
   selectTickerInfo
 } from "../redux/slices/tickerSlice";
+import { Navigate } from "react-router-dom";
 
 export default function StockChart() {
   const selectPriceHistory = useSelector(selectTickerPriceHistory);
@@ -111,9 +112,11 @@ export default function StockChart() {
   };
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
+
   if (tickerInfo === null){
-    return null
+    return <Navigate to="/" replace={true} />
   }
+  
   return (
     <div id="chart-container">
       <HighchartsReact
