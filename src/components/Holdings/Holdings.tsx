@@ -6,9 +6,11 @@ import InfoTable from "../InfoTable";
 import FundCompositionPieChart from "./FundCompositionPieChart";
 import BondRatingsPieChart from "./BondRatingsPieChart";
 import SectorWeightingBarChart from "./SectorWeightingBarChart";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Holdings() {
   const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
+  let navigate = useNavigate();
 
   const {
     bondHoldings,
@@ -114,9 +116,6 @@ export default function Holdings() {
             Sector weightings
           </h3>
           {<SectorWeightingBarChart />}
-          <button>Sort Ascending</button>
-          <button>Sort Descending</button>
-          <h2>Move the buttons and bar chart into a comp</h2>
         </div>
       </div>
     </div>

@@ -222,6 +222,11 @@ export const tickerSlice = createSlice({
             }
           );
         }
+        // if (state.info?.sectorWeightings) {
+        //   state.info?.sectorWeightings.sort((sector1, sector2) => {
+        //     return Object.values(sector1)[0] - Object.values(sector2)[0]
+        //   })
+        // }
         state.priceHistory = payload.price_history;
         state.isLoading = false;
       })

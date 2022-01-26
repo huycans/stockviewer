@@ -1,21 +1,35 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { selectTickerInfo, TickerInfoType } from "../../redux/slices/tickerSlice";
-
+import {
+  selectTickerInfo,
+  TickerInfoType
+} from "../../redux/slices/tickerSlice";
+import * as _ from "lodash";
 export default function SectorWeightingBarChart() {
   const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
+  const { sectorWeightings } = tickerInfo;
 
-  const {
-    sectorWeightings
-  } = tickerInfo;
+  const [sectorWeightingsBarData, setSectorWeightingsBarData] = useState<
+    [string, number][]
+  >(
+    sectorWeightings.map((sector, index) => {
+      return [
+        Object.keys(sector)[0].toUpperCase(),
+        Math.round(Object.values(sector)[0] * 100 * 100) / 100
+      ];
+    })
+  );
 
-
-  let sectorWeightingsBarData = sectorWeightings
-  .map((sector, index) => {
-    return [Object.keys(sector)[0].toUpperCase(), Math.round((Object.values(sector)[0])*100*100)/100 ]
-  });
+  // let sectorWeightingsBarData: [string, number][] = sectorWeightings.map(
+  //   (sector, index) => {
+  //     return [
+  //       Object.keys(sector)[0].toUpperCase(),
+  //       Math.round(Object.values(sector)[0] * 100 * 100) / 100
+  //     ];
+  //   }
+  // );
 
   const sectorWeightingsOptions: Highcharts.Options = {
     chart: {
@@ -25,7 +39,7 @@ export default function SectorWeightingBarChart() {
       text: ""
     },
     subtitle: {
-      text: ''
+      text: ""
     },
     navigation: {
       bindingsClassName: "sectorWeightingsBarChart"
@@ -49,11 +63,11 @@ export default function SectorWeightingBarChart() {
       }
     },
     legend: {
-      enabled: false,
+      enabled: false
     },
     tooltip: {
       // pointFormat: "<b>{series.name} {point.y:.1f}%</b>"
-      pointFormat: '{point.y}%',
+      pointFormat: "{point.y}%"
     },
     plotOptions: {
       bar: {
@@ -67,25 +81,55 @@ export default function SectorWeightingBarChart() {
     },
     series: [
       {
-        dataSorting: {
-          enabled: true,
-          
-        },
         showInLegend: false,
-        type:"bar",
+        type: "bar",
         data: sectorWeightingsBarData,
         // data: [["A", 12],["B", 10]],
         name: "Weight"
       }
     ]
   };
-  
+
+  const sortData = (direction: "asc" | "des") => {
+    let sectorWeightingsBarDataCopy = _.cloneDeep(sectorWeightingsBarData);
+    if (direction === "asc") {
+      sectorWeightingsBarDataCopy.sort((sector1, sector2) => {
+        //sectorWeightingsBarData looks like this: [["A", 10], ["B", 20],...]
+        return sector1[1] - sector2[1];
+      });
+    } else if (direction === "des") {
+      sectorWeightingsBarDataCopy.sort((sector1, sector2) => {
+        return sector2[1] - sector1[1];
+      });
+    } else return null;
+
+    setSectorWeightingsBarData(sectorWeightingsBarDataCopy);
+  };
   const sectorWeightingsBarChartRef = useRef<HighchartsReact.RefObject>(null);
-  return (
+  const sectorWeightingBarChart = (
     <HighchartsReact
       highcharts={Highcharts}
       options={sectorWeightingsOptions}
       ref={sectorWeightingsBarChartRef}
     />
+  );
+  return (
+    <>
+      <button
+        type="button"
+        className="btn btn-outline-secondary btn-sm mx-3"
+        onClick={() => sortData("asc")}
+      >
+        Sort ascending
+      </button>
+      <button
+        type="button"
+        className="btn btn-outline-secondary btn-sm"
+        onClick={() => sortData("des")}
+      >
+        Sort descending
+      </button>
+      {sectorWeightingBarChart}
+    </>
   );
 }
