@@ -12,7 +12,7 @@ import "./App.scss";
 import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile/Profile";
-import Holdings from "./components/Holdings";
+import Holdings from "./components/Holdings/Holdings";
 
 function App() {
   return (
