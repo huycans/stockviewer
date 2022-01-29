@@ -22,15 +22,6 @@ export default function SectorWeightingBarChart() {
     })
   );
 
-  // let sectorWeightingsBarData: [string, number][] = sectorWeightings.map(
-  //   (sector, index) => {
-  //     return [
-  //       Object.keys(sector)[0].toUpperCase(),
-  //       Math.round(Object.values(sector)[0] * 100 * 100) / 100
-  //     ];
-  //   }
-  // );
-
   const sectorWeightingsOptions: Highcharts.Options = {
     chart: {
       type: "bar"
@@ -115,20 +106,24 @@ export default function SectorWeightingBarChart() {
   );
   return (
     <>
-      <button
-        type="button"
-        className="btn btn-outline-secondary btn-sm mx-3"
-        onClick={() => sortData("asc")}
-      >
-        Sort ascending
-      </button>
-      <button
-        type="button"
-        className="btn btn-outline-secondary btn-sm"
-        onClick={() => sortData("des")}
-      >
-        Sort descending
-      </button>
+      <div className="btn-row">
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-sm mx-3 sort-btn"
+          onClick={() => sortData("asc")}
+          data-bs-toggle="button"
+        >
+          Sort ascending
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-sm sort-btn"
+          onClick={() => sortData("des")}
+          data-bs-toggle="button"
+        >
+          Sort descending
+        </button>
+      </div>
       {sectorWeightingBarChart}
     </>
   );

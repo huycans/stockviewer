@@ -95,7 +95,7 @@ export default function Holdings() {
         </div>
         <div className="col-md-6" id="bondRatingPieChart">
           <h3 className="fw-bold">Bond ratings</h3>
-          {<BondRatingsPieChart/>}
+          <BondRatingsPieChart/>
         </div>
       </div>
       <div className="row holding-section">
@@ -119,7 +119,7 @@ export default function Holdings() {
           <h3 className="fw-bold">
             Sector weightings
           </h3>
-          {<SectorWeightingBarChart />}
+          <SectorWeightingBarChart />
         </div>
       </div>
     </div>
