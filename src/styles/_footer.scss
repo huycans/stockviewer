@@ -1,5 +1,7 @@
-$footer-height: 150px;
+$footer-height: 300px; //=300+paddingTop
+$footer-padding-top: 20px;
 .footer {
+  padding-top: $footer-padding-top;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -7,8 +9,12 @@ $footer-height: 150px;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: $footer-height;
-  padding-top: 20px;
+  height: $footer-height+$footer-padding-top;
+  .heading-underline {
+    width: "60px";
+    background-color: $black;
+    height: 2px;
+  }
   ul {
     padding-left: 0;
   }
@@ -19,8 +25,12 @@ $footer-height: 150px;
   div[class*="col-"] {
     height: 100%;
   }
+
+  a {
+    color: $black;
+  }
 }
 
-.push{
+.push {
   height: $footer-height;
 }

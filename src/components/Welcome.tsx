@@ -10,7 +10,7 @@ export default function Welcome() {
       <div>
         <h1>Welcome to Stockviewer.</h1>
         <p>
-          Enter a ticker for a single stock, mutual fund or ETF on the search
+          Enter a ticker symbol (e.g AAPL for Apple) of a single stock, mutual fund or ETF on the search
           bar to see information about that ticker
         </p>
       </div>
