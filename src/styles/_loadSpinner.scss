@@ -11,4 +11,76 @@
   align-items: center;
   flex-direction: column;
 
+  .spin-container {
+    position: absolute;
+    .spin-logo {
+      position: absolute;
+      top: 20%;
+      left: 21%;
+      width: 150px;
+    }
+
+    .spin {
+      position: relative;
+      display: inline-block;
+      width: 250px;
+      height: 250px;
+      border: 5px solid #34495e;
+      border-radius: 100%;
+      animation: spin 0.75s infinite linear;
+    }
+  
+    .spin::before,
+    .spin::after {
+      left: -2px;
+      top: -2px;
+      display: none;
+      position: absolute;
+      content: "";
+      width: inherit;
+      height: inherit;
+      border: inherit;
+      border-radius: inherit;
+    }
+  
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  
+    .spinner,
+    .spinner::before,
+    .spinner::after {
+      display: inline-block;
+      border-color: transparent;
+      border-top-color: $main-blue;
+      animation-duration: 3s;
+    }
+  
+    .spinner::before {
+      transform: rotate(120deg);
+    }
+  
+    .spinner::after {
+      transform: rotate(240deg);
+    }
+
+    @media (max-width: 576px) {//sm
+      .spin {
+        width: 150px;
+        height: 150px;
+      }
+      .spin-logo {
+        position: absolute;
+        top: 21%;
+        left: 25%;
+        width: 75px;
+      }
+    }
+  }
+
 }
