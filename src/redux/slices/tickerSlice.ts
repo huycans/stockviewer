@@ -167,7 +167,7 @@ const initialState: TickerState = {
   info: null,
   error: "",
   priceHistory: [],
-  isLoading: true
+  isLoading: false
 };
 export type ServerError = {
   code: string;
