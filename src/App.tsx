@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile/Profile";
 import Holdings from "./components/Holdings/Holdings";
+import CompareFunds from './components/CompareFunds/CompareFunds';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/chart" element={<StockChart />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/holdings" element={<Holdings />} />
+            <Route path="/compare" element={<CompareFunds />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <hr />
