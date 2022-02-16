@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile/Profile";
 import Holdings from "./components/Holdings/Holdings";
+import Research from "./components/Research";
 
 function App() {
   return (
@@ -24,13 +25,15 @@ function App() {
         <main className="mainContent">
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/summary" element={<TickerInfo />} />
-            <Route path="/chart" element={<StockChart />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/holdings" element={<Holdings />} />
+            <Route path="/research" element={<Research/> }>
+              <Route path="summary" element={<TickerInfo />} />
+              <Route path="chart" element={<StockChart />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="holdings" element={<Holdings />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <hr />
         </main>
         <div className="push"></div>
       </div>

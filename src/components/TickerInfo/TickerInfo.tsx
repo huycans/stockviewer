@@ -16,6 +16,6 @@ export default function TickerInfo() {
     else if (quoteType === "MUTUALFUND") return <FundInfo />;
     else if (quoteType === "ETF") return <ETFInfo />;
   } 
-  return <Navigate to="/" replace={true} />;
+  return <Navigate to="/research" replace={true} />;
   
 }
