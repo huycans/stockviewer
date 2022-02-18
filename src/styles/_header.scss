@@ -10,4 +10,10 @@ header {
     height: 80px;
   }
 
+  .header-link{
+    text-decoration: none;
+
+    &.active {
+    text-decoration: underline;
+  }}
 }

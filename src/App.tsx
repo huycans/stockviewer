@@ -14,6 +14,7 @@ import Welcome from "./components/Welcome";
 import Profile from "./components/Profile/Profile";
 import Holdings from "./components/Holdings/Holdings";
 import Research from "./components/Research";
+import CompareFunds from "./components/CompareFunds";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="holdings" element={<Holdings />} />
             </Route>
+            <Route path="/compare" element={<CompareFunds/> } />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
