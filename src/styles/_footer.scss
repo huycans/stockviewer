@@ -1,4 +1,4 @@
-$footer-height: 300px; //=300+paddingTop
+$footer-height: 235px; //=300+paddingTop
 $footer-padding-top: 20px;
 .footer {
   padding-top: $footer-padding-top;
@@ -10,6 +10,7 @@ $footer-padding-top: 20px;
   bottom: 0;
   width: 100%;
   height: $footer-height+$footer-padding-top;
+
   .heading-underline {
     width: "60px";
     background-color: $black;
@@ -17,6 +18,9 @@ $footer-padding-top: 20px;
   }
   ul {
     padding-left: 0;
+  }
+  li {
+    list-style-type: none;
   }
   .tech-used {
     list-style: none;
@@ -29,6 +33,7 @@ $footer-padding-top: 20px;
   a {
     color: $black;
   }
+
 }
 
 .push {

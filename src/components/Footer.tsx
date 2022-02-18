@@ -30,21 +30,13 @@ export default function Footer() {
               <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
               />
-              <p>
-                <span className="text-dark">React</span>
-              </p>
-              <p>
-                <span className="text-dark">React Router 6</span>
-              </p>
-              <p>
-                <span className="text-dark">Bootstrap 5</span>
-              </p>
-              <p>
-                <span className="text-dark">Redux</span>
-              </p>
-              <p>
-                <span className="text-dark">yfinance API</span>
-              </p>
+              <ul>
+                <li><span className="text-dark">React</span></li>
+                <li><span className="text-dark">React Router 6</span></li>
+                <li><span className="text-dark">Bootstrap 5</span></li>
+                <li><span className="text-dark">Redux</span></li>
+                <li><span className="text-dark">yfinance API</span></li>
+              </ul>
             </div>
 
             <div className="col-md-3 mx-auto mb-md-0 mb-4">
