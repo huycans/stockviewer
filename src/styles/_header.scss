@@ -1,12 +1,17 @@
-header {
+.header {
   margin: 0px 0px;
   min-height: 6rem;
   align-items: center;
   display: flex;
+  background-color: $gray-300;
 
   #stockviewerLogo {
     width: 80px;
     height: 80px;
+  }
+
+  button {
+    width: 100%;
   }
 
   .header-link{

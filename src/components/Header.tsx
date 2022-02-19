@@ -22,7 +22,11 @@ const HeaderRoundedButtonLink = ({
 }: HeaderRoundedButtonLinkType) => {
   return (
     <RoundedButton>
-      <NavLink className={"header-link"} style={{ color: textColor ? textColor : "white" }} to={to}>
+      <NavLink
+        className={"header-link"}
+        style={{ color: textColor ? textColor : "white" }}
+        to={to}
+      >
         {children}
       </NavLink>
     </RoundedButton>
@@ -31,25 +35,28 @@ const HeaderRoundedButtonLink = ({
 
 export default function Header() {
   return (
-    <header className="row">
-      <div className="col-6 header-title">
-        <Link to={"/"}>
-          <img
-            id="stockviewerLogo"
-            src={stockviewerLogo}
-            alt="Stockviewer logo"
-          />
-        </Link>
-      </div>
-      <div className="col-3">
-        <HeaderRoundedButtonLink to={"/research"}>
-          <h5>Research a security</h5>
-        </HeaderRoundedButtonLink>
-      </div>
-      <div className="col-3">
-        <HeaderRoundedButtonLink to={"/compare"}>
-          <h5>Compare funds</h5>
-        </HeaderRoundedButtonLink>
+    <header className="container-fluid">
+      <div className="row header">
+        <div className="col-1"></div>
+        <div className="col-5 header-title">
+          <Link to={"/"}>
+            <img
+              id="stockviewerLogo"
+              src={stockviewerLogo}
+              alt="Stockviewer logo"
+            />
+          </Link>
+        </div>
+        <div className="col-3">
+          <HeaderRoundedButtonLink to={"/research"}>
+            <h5>Research a security</h5>
+          </HeaderRoundedButtonLink>
+        </div>
+        <div className="col-3">
+          <HeaderRoundedButtonLink to={"/compare"}>
+            <h5>Compare funds</h5>
+          </HeaderRoundedButtonLink>
+        </div>
       </div>
     </header>
   );

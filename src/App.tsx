@@ -19,11 +19,11 @@ import CompareFunds from "./components/CompareFunds";
 function App() {
   return (
     <>
-      <div className="App container">
+      <div className="App">
         <Header />
         <ErrorDisplay />
         <LoadSpinner />
-        <main className="mainContent">
+        <main className="mainContent container">
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/research" element={<Research/> }>
