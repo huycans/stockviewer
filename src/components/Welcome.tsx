@@ -1,7 +1,5 @@
 import React from "react";
-import { selectTickerInfo } from "../redux/slices/tickerSlice";
-import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GlowButton from "./GlowButton";
 
 export default function Welcome() {
@@ -18,12 +16,14 @@ export default function Welcome() {
             onClick={() => navigate("/research")}
             text="Research a security"
           />
+          <h5 className="stock-typewrite">AAPL, AMZN, MSFT, etc</h5>
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center">
           <GlowButton
             onClick={() => navigate("/compare")}
             text="Compare funds"
           />
+          <h5 className="funds-typewrite">SPY vs QQQ</h5>
         </div>
       </div>
     </div>

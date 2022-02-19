@@ -1,5 +1,16 @@
 .welcome {
-  h1, h2 {
+  h1,
+  h2 {
     text-align: center;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+  .stock-typewrite{
+    @include typewriter(4s, 21, 0.5s )
+  }
+  .funds-typewrite{
+    @include typewriter(4s, 10, 0.5s)
   }
 }
