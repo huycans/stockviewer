@@ -76,7 +76,7 @@ export default function Research() {
           </div>
           <div className="col-2 blank"></div>
         </div>
-        <div className="row">
+        <div className="row research-tabs">
           {tickerInfo ? (
             <ul className="nav nav-tabs justify-content-center">
               {navItems.map((navItem) => {
