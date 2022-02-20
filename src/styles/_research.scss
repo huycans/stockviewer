@@ -1,0 +1,25 @@
+.searchBar {
+  align-items: center;
+  display: flex;
+  margin-bottom: 40px;
+
+  .search-label{
+    width: 20%;
+    font-weight: bold;
+  }
+  #searchBar {
+    width: 60%;
+    height: 2rem;
+  }
+
+  #searchBtn {
+    width: 20%;
+    height: 2rem;
+    border: none;
+    background-color: $main-blue;
+    color: $main-white;
+  }
+}
+.research-tabs {
+  margin-bottom: 2rem;
+}

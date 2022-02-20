@@ -1,0 +1,20 @@
+.glow-btn{
+  width: 200px;
+  height: 200px;
+  border: none!important;
+  text-decoration: none;
+  color: rgba($black, 0.8)!important;
+  background: linear-gradient(to bottom right, $gray-200, $main-blue);
+  // padding: 15px 40px!important;
+  margin-bottom: 20px;
+  border-radius: 5px!important;
+  font-weight: bold!important;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out!important;
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba($main-blue, 0.8);
+  }
+  
+}

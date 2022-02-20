@@ -1,28 +1,23 @@
-header {
-  margin: 20px 0px;
+.header {
+  margin: 0px 0px;
   min-height: 6rem;
-  align-content: center;
+  align-items: center;
+  display: flex;
+  background-color: $gray-300;
 
   #stockviewerLogo {
     width: 80px;
     height: 80px;
   }
 
-  .header-searchBar {
-    align-items: center;
-    display: flex;
-
-    #searchBar {
-      width: 80%;
-      height: 2rem;
-    }
-
-    #searchBtn {
-      width: 20%;
-      height: 2rem;
-      border: none;
-      background-color: $main-blue;
-      color: $main-white;
-    }
+  button {
+    width: 100%;
   }
+
+  .header-link{
+    text-decoration: none;
+
+    &.active {
+    text-decoration: underline;
+  }}
 }

@@ -1,5 +1,9 @@
 // import
 @import "./styles/custom";
+
+@import "./styles/mixins/typewriter";
+
+@import "./styles/glowButton";
 @import "./styles/tickerInfo";
 @import "./styles/header";
 @import "./styles/stockChart";
@@ -7,6 +11,9 @@
 @import "./styles/footer";
 @import "./styles/notFound";
 @import "./styles/holdings";
+@import "./styles/welcome";
+@import "./styles/research";
+@import "./styles/roundedButton";
 
 // reset styles
 body {
@@ -24,7 +31,7 @@ body {
   min-height: 100vh;
 
   .App {
-    margin-bottom: -140px;
+    margin-bottom: -100px;
     min-height: 100%;
     padding-bottom: 4rem;
   }

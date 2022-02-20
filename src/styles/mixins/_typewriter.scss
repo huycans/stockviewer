@@ -1,0 +1,43 @@
+@mixin typewriter($typewriter-speed: 2s, 
+$steps: 23, 
+$delay: 1s,
+$blinking-speed: 750ms){
+  
+  position: relative;
+  width: max-content;
+  font-family: 'Source Code Pro', monospace;
+    
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  
+  &::before {
+    background: $main-white;
+    animation: typewriting $typewriter-speed steps($steps) $delay forwards;
+  }
+  
+  &::after {
+    width: 0.125em;
+    background: $black;
+    animation: typewriting $typewriter-speed steps($steps) $delay forwards,
+    blink 750ms steps(23) infinite;
+  }
+}
+
+@keyframes typewriting {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
