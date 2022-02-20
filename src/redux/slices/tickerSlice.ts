@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTickerInfo } from "../../API/tickerAPI";
 import { RootState } from "../store";
+import {Response, ServerError} from './serverTypes';
 export interface TickerInfoType {
   symbol: string;
   longName: string;
@@ -169,16 +170,7 @@ const initialState: TickerState = {
   priceHistory: [],
   isLoading: false
 };
-export type ServerError = {
-  code: string;
-  name: string;
-  description: string;
-};
-export type Response = {
-  status: string;
-  data: any;
-  error: ServerError;
-};
+
 
 export const getTickerInfo = createAsyncThunk(
   "ticker/getInfo",

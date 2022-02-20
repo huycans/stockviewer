@@ -4,11 +4,12 @@ import {
   getTickerInfo,
   selectTickerInfo
 } from "../../redux/slices/tickerSlice";
-import {fetchListOfTickers} from '../../API/tickerAPI'
+import { getListOfTickers } from "../../redux/slices/compareSlice";
 import SearchBar from "../SearchBar";
 
 export default function CompareFunds() {
-  const [tickerListString, setTickerListString] = useState("");
+  const [tickerListString, setTickerListString] = useState("ftihx, fskax, bnd");
+  const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent) => {
     let target = event.target as HTMLInputElement;
@@ -16,21 +17,24 @@ export default function CompareFunds() {
   };
 
   const handleTickerListSearch = () => {
-    const tickerList = tickerListString.toUpperCase().replaceAll(/ /g,'').split(",")
-      console.log(tickerList)
+    const tickerList = tickerListString
+      .toUpperCase()
+      .replaceAll(/ /g, "")
+      .split(",");
+      dispatch(getListOfTickers(tickerList));
   };
 
   return (
     <div className="container compare-funds">
       <div className="row">
         <SearchBar
-            value={tickerListString}
-            onChange={handleChange}
-            handleSearch={handleTickerListSearch}
-            label={"List of symbols:"}
-            searchBarId="tickerListSearchBar"
-            placeholder="Enter a list of mututal funds and/or ETF symbols"
-          />
+          value={tickerListString}
+          onChange={handleChange}
+          handleSearch={handleTickerListSearch}
+          label={"List of symbols:"}
+          searchBarId="tickerListSearchBar"
+          placeholder="Enter a list of mututal funds and/or ETF symbols"
+        />
       </div>
       <div className="row fund-overview-table">fund-overview-table</div>
       <div className="row comparing-chart">comparing chart</div>

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import tickerReducer from './slices/tickerSlice'
+import compareSlice from './slices/compareSlice';
 
 export const store = configureStore({
   reducer: {
-    ticker: tickerReducer
+    ticker: tickerReducer,
+    compare: compareSlice
   },
 })
 
