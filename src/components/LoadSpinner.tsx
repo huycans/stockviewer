@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectTickerIsLoading } from "../redux/slices/tickerSlice";
+import { selectCompareIsLoading } from "../redux/slices/compareSlice";
 import logo from "../assets/img/stockviewer_transparent.png";
 export default function LoadSpinner() {
-  const isLoading = useSelector(selectTickerIsLoading);
+  let isLoading = useSelector(selectTickerIsLoading); 
+  isLoading = useSelector(selectCompareIsLoading) || isLoading;
 
   if (isLoading)
     return (
