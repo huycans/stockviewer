@@ -4,6 +4,8 @@
 @import "./styles/mixins/typewriter";
 
 @import "./styles/glowButton";
+@import "./styles/searchBar";
+
 @import "./styles/tickerInfo";
 @import "./styles/header";
 @import "./styles/stockChart";
@@ -14,6 +16,7 @@
 @import "./styles/welcome";
 @import "./styles/research";
 @import "./styles/roundedButton";
+@import "./styles/compareFunds";
 
 // reset styles
 body {
