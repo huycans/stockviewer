@@ -1,26 +1,39 @@
-import React from "react";
-import examplePhoto from "../../assets/img/compare_tool_example.png";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getTickerInfo,
+  selectTickerInfo
+} from "../../redux/slices/tickerSlice";
+import {fetchListOfTickers} from '../../API/tickerAPI'
+import SearchBar from "../SearchBar";
+
 export default function CompareFunds() {
+  const [tickerListString, setTickerListString] = useState("");
+
+  const handleChange = (event: React.ChangeEvent) => {
+    let target = event.target as HTMLInputElement;
+    setTickerListString(target.value);
+  };
+
+  const handleTickerListSearch = () => {
+    const tickerList = tickerListString.toUpperCase().replaceAll(/ /g,'').split(",")
+      console.log(tickerList)
+  };
+
   return (
-    <div>
-      Compare funds component
-      <p>
-        <ul>
-          <li>Compare funds tool will be different from ticker info.</li>
-          <li>
-            Should be in another redux slice, does not share state with
-            tickerinfo.
-          </li>
-          <li>
-            Include chart (with adjustable timeline) and basic info table.
-          </li>
-          <li>Need to redesign header in this case to provide link to compare fund tool</li>
-        </ul>
-      </p>
-      <p>
-        <h3>Look like this:</h3>
-        <img width={"100%"} src={examplePhoto} alt="example" />
-      </p>
+    <div className="container compare-funds">
+      <div className="row">
+        <SearchBar
+            value={tickerListString}
+            onChange={handleChange}
+            handleSearch={handleTickerListSearch}
+            label={"List of symbols:"}
+            searchBarId="tickerListSearchBar"
+            placeholder="Enter a list of mututal funds and/or ETF symbols"
+          />
+      </div>
+      <div className="row fund-overview-table">fund-overview-table</div>
+      <div className="row comparing-chart">comparing chart</div>
     </div>
   );
 }
