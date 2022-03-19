@@ -3,21 +3,26 @@
   display: flex;
   margin-bottom: 40px;
 
-  .search-label{
-    width: 20%;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 60%;
-    height: 2rem;
-  }
+  .searchBar-main {
+    display: flex;
 
-  .searchBtn {
-    width: 20%;
-    height: 2rem;
-    border: none;
-    background-color: $main-blue;
-    color: $main-white;
+    .search-label {
+      width: fit-content;
+      font-weight: bold;
+      align-self: center;
+    }
+
+    input {
+      flex-grow: 1;
+      height: 2rem;
+    }
+
+    .searchBtn {
+      min-width: 5rem;
+      height: 2rem;
+      border: none;
+      background-color: $main-blue;
+      color: $main-white;
+    }
   }
 }

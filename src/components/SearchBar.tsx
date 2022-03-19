@@ -31,9 +31,9 @@ export default function SearchBar({
   return (
     <div className="row searchBar">
       <div className="col-2 blank"></div>
-      <div className="col-8">
+      <div className="col-8 searchBar-main">
         <label className="search-label" htmlFor={searchBarId}>
-          {label}
+          {label}&nbsp;
         </label>
         <input
           value={value}
