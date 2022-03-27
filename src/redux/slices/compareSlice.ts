@@ -6,7 +6,11 @@ import {Response, ServerError} from './serverTypes'
 
 const initialState = {
   isLoading: false,
-  tickerList: []
+  timestamps: [] as number[],
+  ticker_price_history: {} as {
+    [tickerName: string]: number[]
+  },
+  error: ''
 };
 
 export const getListOfTickers = createAsyncThunk(
@@ -39,14 +43,15 @@ export const compareSlice = createSlice({
       })
       .addCase(getListOfTickers.fulfilled, (state, action) => {
         let payload = action.payload;
-        state.tickerList = payload.ticker_list;
+        state.timestamps = payload.timestamps
+        state.ticker_price_history = payload.ticker_price_history
         state.isLoading = false;
       })
-    //   .addCase(getTickerInfo.rejected, (state, action) => {
-    //     let payload = action.payload as ServerError;
-    //     state.error = payload.description;
-    //     state.isLoading = false;
-    //   });
+      .addCase(getListOfTickers.rejected, (state, action) => {
+        let payload = action.payload as ServerError;
+        state.error = payload.description;
+        state.isLoading = false;
+      });
   }
 });
 
