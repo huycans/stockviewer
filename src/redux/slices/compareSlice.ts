@@ -1,16 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchListOfTickers } from "../../API/tickerAPI";
 import { RootState } from "../store";
-import {Response, ServerError} from './serverTypes'
-
+import { Response, ServerError } from "./serverTypes";
+import { TickerInfoType } from "./tickerSlice";
 
 const initialState = {
   isLoading: false,
   timestamps: [] as number[],
   ticker_price_history: {} as {
-    [tickerName: string]: number[]
+    [tickerName: string]: number[];
   },
-  error: ''
+  info: {} as {
+    [tickerName: string]: TickerInfoType;
+  },
+  error: ""
 };
 
 export const getListOfTickers = createAsyncThunk(
@@ -43,8 +46,9 @@ export const compareSlice = createSlice({
       })
       .addCase(getListOfTickers.fulfilled, (state, action) => {
         let payload = action.payload;
-        state.timestamps = payload.timestamps
-        state.ticker_price_history = payload.ticker_price_history
+        state.timestamps = payload.timestamps;
+        state.ticker_price_history = payload.ticker_price_history;
+        state.info = payload.info;
         state.isLoading = false;
       })
       .addCase(getListOfTickers.rejected, (state, action) => {
