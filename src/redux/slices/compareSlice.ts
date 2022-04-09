@@ -3,11 +3,11 @@ import { fetchListOfTickers } from "../../API/tickerAPI";
 import { RootState } from "../store";
 import { Response, ServerError } from "./serverTypes";
 import { TickerInfoType } from "./tickerSlice";
-
+import responseJson from "./jsondata.json";
 const initialState = {
   isLoading: false,
   timestamps: [] as number[],
-  ticker_price_history: {} as {
+  tickers_price_history: {} as {
     [tickerName: string]: number[];
   },
   info: {} as {
@@ -25,6 +25,7 @@ export const getListOfTickers = createAsyncThunk(
         // dispatch(clearTickerError());
         return response.data;
       } else if (response.error) throw response.error;
+      // return await responseJson.data; //TEST DATA
     } catch (error) {
       return rejectWithValue(error); //will asssign 'error' as 'action.payload' in the reducer
     }
@@ -47,8 +48,8 @@ export const compareSlice = createSlice({
       .addCase(getListOfTickers.fulfilled, (state, action) => {
         let payload = action.payload;
         state.timestamps = payload.timestamps;
-        state.ticker_price_history = payload.ticker_price_history;
-        state.info = payload.info;
+        state.tickers_price_history = payload.tickers_price_history;
+        state.info = payload.info as any;
         state.isLoading = false;
       })
       .addCase(getListOfTickers.rejected, (state, action) => {
@@ -58,6 +59,15 @@ export const compareSlice = createSlice({
       });
   }
 });
+
+export const selectTickersPriceHistory = (state: RootState) =>
+state.compare.tickers_price_history;
+
+export const selectTimestamps = (state: RootState) =>
+state.compare.timestamps;
+
+export const selectTickersInfo = (state: RootState) =>
+state.compare.info;
 
 export const selectCompareIsLoading = (state: RootState) =>
   state.compare.isLoading;

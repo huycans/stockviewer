@@ -35,7 +35,7 @@ function formatMoney(number: number | null) {
 }
 
 const formatPercent = (number: number | null) => {
-  if (typeof number === "number") return formatNumber(number * 100) + "%";
+  if (typeof number === "number") return (number * 100).toFixed(2) + "%";
   else return null;
 };
 
