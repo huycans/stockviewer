@@ -142,7 +142,7 @@ export default function CompareFunds() {
         <td>{tickerReturn.MAX}</td>
         <td>
           {tickerInfo.annualReportExpenseRatio
-            ? tickerInfo.annualReportExpenseRatio
+            ? formatPercent(tickerInfo.annualReportExpenseRatio)
             : "N/A"}
         </td>
         <td>
