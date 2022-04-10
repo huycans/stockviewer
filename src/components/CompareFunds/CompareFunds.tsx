@@ -4,7 +4,6 @@ import { DateTime } from "luxon";
 
 import {
   getListOfTickers,
-  selectCompareIsLoading,
   selectTickersInfo,
   selectTimestamps,
   selectTickersPriceHistory
@@ -24,7 +23,7 @@ type ReturnObject = {
 };
 
 export default function CompareFunds() {
-  const [tickerListString, setTickerListString] = useState("ftihx,bnd");
+  const [tickerListString, setTickerListString] = useState("");
   const tickersPriceHistory = useSelector(selectTickersPriceHistory);
   const tickersInfo = useSelector(selectTickersInfo);
   let timestamps = useSelector(selectTimestamps).slice(); //copy timestamps arr
@@ -155,7 +154,6 @@ export default function CompareFunds() {
     );
     tabelDataRows.push(infoRow);
   }
-
   const seriesOpts = [] as Highcharts.SeriesOptionsType[];
   //create combined [timestamps, price] arr
 
@@ -177,8 +175,6 @@ export default function CompareFunds() {
     });
   }
 
-  // console.log(seriesOpts)
-
   const stockChart = (
     <StockChart HTMLTitle="Fund performance" series={seriesOpts} />
   );
@@ -193,7 +189,7 @@ export default function CompareFunds() {
           handleSearch={handleTickerListSearch}
           label={"List of symbols:"}
           searchBarId="tickerListSearchBar"
-          placeholder="Enter a list of mututal funds and/or ETF symbols"
+          placeholder="Enter comma-separated funds symbols"
         />
       </div>
       <div className="row fund-overview-table">
