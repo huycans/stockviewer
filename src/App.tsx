@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import TickerInfo from "./components/TickerInfo/TickerInfo";
 import ErrorDisplay from "./components/ErrorDisplay";
-import StockChart from "./components/StockChart";
 import LoadSpinner from "./components/LoadSpinner";
 import Footer from "./components/Footer";
 

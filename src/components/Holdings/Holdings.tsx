@@ -6,7 +6,7 @@ import InfoTable from "../InfoTable";
 import FundCompositionPieChart from "./FundCompositionPieChart";
 import BondRatingsPieChart from "./BondRatingsPieChart";
 import SectorWeightingBarChart from "./SectorWeightingBarChart";
-import { NavLink, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function Holdings() {
   const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;

@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import classnames from "classnames";
 
@@ -9,11 +7,10 @@ import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
 import SearchBar from "./SearchBar";
 
 export default function Research() {
-  const [tickerName, setTickerName] = useState("VTHRX");
+  const [tickerName, setTickerName] = useState("");
   const tickerInfo = useSelector(selectTickerInfo);
 
   const dispatch = useDispatch();
-  let navigate = useNavigate();
 
   const handleTickerSearch = () => {
     dispatch(getTickerInfo(tickerName));
