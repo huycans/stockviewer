@@ -1,4 +1,4 @@
-export const BASE_URL = "http://127.0.0.1:5000/";
+export const BASE_URL = process.env.NODE_ENV === 'development' ? "http://127.0.0.1:5000/" : (process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : "https://stockviewer-react.herokuapp.com/");
 export const GET_INFO = "get_info";
 export const GET_LIST = "get_list";
 
