@@ -1,21 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Highcharts from "highcharts/highstock";
-import { useSelector } from "react-redux";
 import HighchartsReact from "highcharts-react-official";
-import {
-  selectTickerPriceHistory,
-  selectTickerInfo
-} from "../redux/slices/tickerSlice";
-import { Navigate } from "react-router-dom";
 
-export default function StockChart() {
-  const selectPriceHistory = useSelector(selectTickerPriceHistory);
-  const tickerInfo = useSelector(selectTickerInfo);
+type StockChartProps = {
+  HTMLTitle: string;
+  series: Highcharts.SeriesOptionsType[];
+};
 
+export default function StockChart({ HTMLTitle, series }: StockChartProps) {
   const options: Highcharts.Options = {
     title: {
       useHTML: true,
-      text: "<b>" + tickerInfo?.symbol + "</b>" + " price history",
+      text: HTMLTitle,
       style: {
         fontSize: "1.5rem"
       }
@@ -36,12 +32,6 @@ export default function StockChart() {
       x: 0,
       y: 0,
       buttons: [
-        {
-          type: "week",
-          count: 1,
-          text: "1w",
-          title: "View 1 week"
-        },
         {
           type: "month",
           count: 1,
@@ -97,26 +87,11 @@ export default function StockChart() {
       ],
       selected: 4
     },
-
-    series: [
-      {
-        type: "line",
-        id: "tickerInfo?.symbol",
-        name: tickerInfo?.symbol,
-        data: selectPriceHistory,
-        tooltip: {
-          valueDecimals: 2
-        }
-      }
-    ]
+    series: series
   };
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  if (tickerInfo === null){
-    return <Navigate to="/" replace={true} />
-  }
-  
   return (
     <div id="chart-container">
       <HighchartsReact

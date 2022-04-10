@@ -13,9 +13,9 @@ import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
 import Profile from "./components/Profile/Profile";
 import Holdings from "./components/Holdings/Holdings";
-import CompareFunds from './components/CompareFunds/CompareFunds';
+import CompareFunds from "./components/CompareFunds/CompareFunds";
 import Research from "./components/Research";
-
+import StockInfoChart from "./components/StockInfoChart";
 
 function App() {
   return (
@@ -27,13 +27,13 @@ function App() {
         <main className="mainContent container">
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/research" element={<Research/> }>
+            <Route path="/research" element={<Research />}>
               <Route path="summary" element={<TickerInfo />} />
-              <Route path="chart" element={<StockChart />} />
+              <Route path="chart" element={<StockInfoChart />} />
               <Route path="profile" element={<Profile />} />
               <Route path="holdings" element={<Holdings />} />
             </Route>
-            <Route path="/compare" element={<CompareFunds/> } />
+            <Route path="/compare" element={<CompareFunds />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
