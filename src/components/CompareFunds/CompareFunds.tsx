@@ -11,6 +11,7 @@ import {
 } from "../../redux/slices/compareSlice";
 import SearchBar from "../SearchBar";
 import { formatPercent } from "../utils";
+import StockChart from "../StockChart";
 
 type ReturnObject = {
   "1Y": string;
@@ -155,6 +156,33 @@ export default function CompareFunds() {
     tabelDataRows.push(infoRow);
   }
 
+  const seriesOpts = [] as Highcharts.SeriesOptionsType[];
+  //create combined [timestamps, price] arr
+
+  for (const [tickerName, priceArr] of Object.entries(tickersPriceHistory)) {
+    // zip timestamps and price together
+    let combinedPriceHistory = priceArr.map((price, ind) => {
+      return [timestamps[ind], price];
+    });
+
+    //create series options to pass to stock chart
+    seriesOpts.push({
+      type: "line",
+      id: tickerName,
+      name: tickerName,
+      data: combinedPriceHistory, // [[time, price], ...]
+      tooltip: {
+        valueDecimals: 2
+      }
+    });
+  }
+
+  // console.log(seriesOpts)
+
+  const stockChart = (
+    <StockChart HTMLTitle="Fund performance" series={seriesOpts} />
+  );
+
   // TODO: add error display if any ticker is invalid
   return (
     <div className="container-fluid compare-funds">
@@ -191,7 +219,7 @@ export default function CompareFunds() {
           <tbody>{tabelDataRows}</tbody>
         </table>
       </div>
-      <div className="row comparing-chart">comparing chart</div>
+      <div className="row comparing-chart">{stockChart}</div>
     </div>
   );
 }
