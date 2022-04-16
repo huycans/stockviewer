@@ -2,12 +2,21 @@ import React, { useRef } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-type StockChartProps = {
+interface StockChartProps {
   HTMLTitle: string;
   series: Highcharts.SeriesOptionsType[];
-};
+  buttons?: Highcharts.RangeSelectorButtonsOptions[];
+  enableNavigator?: boolean;
+  enableRangeSelector?: boolean
+}
 
-export default function StockChart({ HTMLTitle, series }: StockChartProps) {
+export default function StockChart({
+  HTMLTitle,
+  series,
+  buttons,
+  enableNavigator = true,
+  enableRangeSelector=true
+}: StockChartProps) {
   const options: Highcharts.Options = {
     title: {
       useHTML: true,
@@ -28,66 +37,72 @@ export default function StockChart({ HTMLTitle, series }: StockChartProps) {
       }
     },
     rangeSelector: {
+      enabled: enableRangeSelector,
       verticalAlign: "top",
       x: 0,
       y: 0,
-      buttons: [
-        {
-          type: "month",
-          count: 1,
-          text: "1m",
-          title: "View 1 month"
-        },
-        {
-          type: "month",
-          count: 3,
-          text: "3m",
-          title: "View 3 months"
-        },
-        {
-          type: "month",
-          count: 6,
-          text: "6m",
-          title: "View 6 months"
-        },
-        {
-          type: "ytd",
-          text: "YTD",
-          title: "View year to date"
-        },
-        {
-          type: "year",
-          count: 1,
-          text: "1y",
-          title: "View 1 year"
-        },
-        {
-          type: "year",
-          count: 3,
-          text: "3y",
-          title: "View 3 year"
-        },
-        {
-          type: "year",
-          count: 5,
-          text: "5y",
-          title: "View 5 year"
-        },
-        {
-          type: "year",
-          count: 10,
-          text: "10y",
-          title: "View 10 year"
-        },
-        {
-          type: "all",
-          text: "All",
-          title: "View all"
-        }
-      ],
+      buttons: buttons
+        ? buttons
+        : [
+            {
+              type: "month",
+              count: 1,
+              text: "1m",
+              title: "View 1 month"
+            },
+            {
+              type: "month",
+              count: 3,
+              text: "3m",
+              title: "View 3 months"
+            },
+            {
+              type: "month",
+              count: 6,
+              text: "6m",
+              title: "View 6 months"
+            },
+            {
+              type: "ytd",
+              text: "YTD",
+              title: "View year to date"
+            },
+            {
+              type: "year",
+              count: 1,
+              text: "1y",
+              title: "View 1 year"
+            },
+            {
+              type: "year",
+              count: 3,
+              text: "3y",
+              title: "View 3 year"
+            },
+            {
+              type: "year",
+              count: 5,
+              text: "5y",
+              title: "View 5 year"
+            },
+            {
+              type: "year",
+              count: 10,
+              text: "10y",
+              title: "View 10 year"
+            },
+            {
+              type: "all",
+              text: "All",
+              title: "View all"
+            }
+          ],
       selected: 4
     },
-    series: series
+    series: series,
+    navigator: {
+      enabled: enableNavigator
+    }
   };
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);

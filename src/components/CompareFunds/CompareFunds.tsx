@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DateTime } from "luxon";
+import { isEmpty } from "lodash";
+import colors, {colorNames} from '../chartColors';
 
 import {
   getListOfTickers,
@@ -49,7 +51,6 @@ export default function CompareFunds() {
   let startDateStr = "",
     endDateStr = "";
 
-  // TODO: calculate total returns based on timestamps
   if (timestamps.length > 0) {
     for (const [tickerName, tickerPriceArr] of Object.entries(
       tickersPriceHistory
@@ -154,30 +155,36 @@ export default function CompareFunds() {
     );
     tabelDataRows.push(infoRow);
   }
-  const seriesOpts = [] as Highcharts.SeriesOptionsType[];
+  let seriesOpts = [] as Highcharts.SeriesOptionsType[];
   //create combined [timestamps, price] arr
 
-  for (const [tickerName, priceArr] of Object.entries(tickersPriceHistory)) {
+  seriesOpts = Object.keys(tickersPriceHistory).map((tickerName, ind)=>{
+    const priceArr = tickersPriceHistory[tickerName]
     // zip timestamps and price together
     let combinedPriceHistory = priceArr.map((price, ind) => {
       return [timestamps[ind], price];
     });
 
     //create series options to pass to stock chart
-    seriesOpts.push({
+    return ({
       type: "line",
       id: tickerName,
       name: tickerName,
+      color: colors[colorNames[ind]],
       data: combinedPriceHistory, // [[time, price], ...]
       tooltip: {
         valueDecimals: 2
-      }
+      },
+      showInNavigator: false
     });
-  }
+  })
 
-  const stockChart = (
-    <StockChart HTMLTitle="Fund performance" series={seriesOpts} />
-  );
+  const CompareStockChart = () => {
+    if (!isEmpty(tickersPriceHistory))
+      return <StockChart HTMLTitle="Fund performance" series={seriesOpts} buttons={[]} enableNavigator={false} enableRangeSelector={false}/>;
+    else return null;
+
+  };
 
   // TODO: add error display if any ticker is invalid
   return (
@@ -215,7 +222,9 @@ export default function CompareFunds() {
           <tbody>{tabelDataRows}</tbody>
         </table>
       </div>
-      <div className="row comparing-chart">{stockChart}</div>
+      <div className="row comparing-chart">
+        <CompareStockChart/>
+      </div>
     </div>
   );
 }
