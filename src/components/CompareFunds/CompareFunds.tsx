@@ -132,6 +132,15 @@ export default function CompareFunds() {
     }
   }
 
+  const redOrGreen = (stringReturn: string) => {
+    if (stringReturn.length > 1){ // is not empty or '-'
+      if (stringReturn[0] === '-'){
+        return colors.red;
+      }
+      else return colors.green
+    }
+  }
+
   let tabelDataRows = [];
   let fundCount = 1;
   for (let [tickerName, tickerInfo] of Object.entries(tickersInfo)) {
@@ -142,13 +151,13 @@ export default function CompareFunds() {
         <td>{`${tickerInfo.longName} (${tickerName})`}</td>
         <td>{10000}</td>
         <td>{tickerReturn.ending}</td>
-        <td>{tickerReturn.YTD}</td>
-        <td>{tickerReturn["6M"]}</td>
-        <td>{tickerReturn["1Y"]}</td>
-        <td>{tickerReturn["3Y"]}</td>
-        <td>{tickerReturn["5Y"]}</td>
-        <td>{tickerReturn["10Y"]}</td>
-        <td>{tickerReturn.MAX}</td>
+        <td style={{color: redOrGreen(tickerReturn.YTD)}}>{tickerReturn.YTD}</td>
+        <td style={{color: redOrGreen(tickerReturn["6M"])}}>{tickerReturn["6M"]}</td>
+        <td style={{color: redOrGreen(tickerReturn["1Y"])}}>{tickerReturn["1Y"]}</td>
+        <td style={{color: redOrGreen(tickerReturn["3Y"])}}>{tickerReturn["3Y"]}</td>
+        <td style={{color: redOrGreen(tickerReturn["5Y"])}}>{tickerReturn["5Y"]}</td>
+        <td style={{color: redOrGreen(tickerReturn["10Y"])}}>{tickerReturn["10Y"]}</td>
+        <td style={{color: redOrGreen(tickerReturn.MAX)}}>{tickerReturn.MAX}</td>
         <td>
           {tickerInfo.annualReportExpenseRatio
             ? formatPercent(tickerInfo.annualReportExpenseRatio)
