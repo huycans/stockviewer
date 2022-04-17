@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DateTime } from "luxon";
-import { isEmpty } from "lodash";
 import colors, { colorNames } from "../chartColors";
-
 import {
   getListOfTickers,
   selectTickersInfo,
@@ -12,7 +10,7 @@ import {
 } from "../../redux/slices/compareSlice";
 import SearchBar from "../SearchBar";
 import { formatPercent } from "../utils";
-import StockChart from "../StockChart";
+import CompareStockChart from "./CompareStockChart";
 
 type ReturnObject = {
   "1Y": string;
@@ -208,20 +206,6 @@ export default function CompareFunds() {
     };
   });
 
-  const CompareStockChart = () => {
-    if (!isEmpty(tickersPriceHistory))
-      return (
-        <StockChart
-          HTMLTitle="Fund performance"
-          series={seriesOpts}
-          buttons={[]}
-          enableNavigator={false}
-          enableRangeSelector={false}
-        />
-      );
-    else return null;
-  };
-
   // TODO: add error display if any ticker is invalid
   return (
     <div className="container-fluid compare-funds">
@@ -261,7 +245,7 @@ export default function CompareFunds() {
         </table>
       </div>
       <div className="row comparing-chart">
-        <CompareStockChart />
+        <CompareStockChart seriesOpts={seriesOpts} tickersPriceHistory={tickersPriceHistory}/>
       </div>
     </div>
   );
