@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DateTime } from "luxon";
 import { isEmpty } from "lodash";
-import colors, {colorNames} from '../chartColors';
+import colors, { colorNames } from "../chartColors";
 
 import {
   getListOfTickers,
@@ -22,6 +22,7 @@ type ReturnObject = {
   "5Y": string;
   "10Y": string;
   MAX: string;
+  ending: string;
 };
 
 export default function CompareFunds() {
@@ -122,18 +123,25 @@ export default function CompareFunds() {
         "3Y": threeYearReturn ? threeYearReturn : "-",
         "5Y": fiveYearReturn ? fiveYearReturn : "-",
         "10Y": tenYearReturn ? tenYearReturn : "-",
-        MAX: maxReturn ? maxReturn : "-"
+        MAX: maxReturn ? maxReturn : "-",
+        ending:
+          tickerPriceArr.length > 0
+            ? tickerPriceArr[tickerPriceArr.length - 1] + ""
+            : "-"
       };
     }
   }
 
   let tabelDataRows = [];
+  let fundCount = 1;
   for (let [tickerName, tickerInfo] of Object.entries(tickersInfo)) {
     let tickerReturn = returns[tickerName];
     let infoRow = (
       <tr key={tickerName}>
-        <td>Delete</td>
+        <td>{fundCount++}</td>
         <td>{`${tickerInfo.longName} (${tickerName})`}</td>
+        <td>{10000}</td>
+        <td>{tickerReturn.ending}</td>
         <td>{tickerReturn.YTD}</td>
         <td>{tickerReturn["6M"]}</td>
         <td>{tickerReturn["1Y"]}</td>
@@ -158,15 +166,15 @@ export default function CompareFunds() {
   let seriesOpts = [] as Highcharts.SeriesOptionsType[];
   //create combined [timestamps, price] arr
 
-  seriesOpts = Object.keys(tickersPriceHistory).map((tickerName, ind)=>{
-    const priceArr = tickersPriceHistory[tickerName]
+  seriesOpts = Object.keys(tickersPriceHistory).map((tickerName, ind) => {
+    const priceArr = tickersPriceHistory[tickerName];
     // zip timestamps and price together
     let combinedPriceHistory = priceArr.map((price, ind) => {
       return [timestamps[ind], price];
     });
 
     //create series options to pass to stock chart
-    return ({
+    return {
       type: "line",
       id: tickerName,
       name: tickerName,
@@ -176,14 +184,21 @@ export default function CompareFunds() {
         valueDecimals: 2
       },
       showInNavigator: false
-    });
-  })
+    };
+  });
 
   const CompareStockChart = () => {
     if (!isEmpty(tickersPriceHistory))
-      return <StockChart HTMLTitle="Fund performance" series={seriesOpts} buttons={[]} enableNavigator={false} enableRangeSelector={false}/>;
+      return (
+        <StockChart
+          HTMLTitle="Fund performance"
+          series={seriesOpts}
+          buttons={[]}
+          enableNavigator={false}
+          enableRangeSelector={false}
+        />
+      );
     else return null;
-
   };
 
   // TODO: add error display if any ticker is invalid
@@ -206,8 +221,10 @@ export default function CompareFunds() {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Delete</th>
+              <th scope="col">Number</th>
               <th scope="col">Name</th>
+              <th scope="col">Starting balance</th>
+              <th scope="col">Ending balance</th>
               <th scope="col">YTD</th>
               <th scope="col">6M</th>
               <th scope="col">1Y</th>
@@ -223,7 +240,7 @@ export default function CompareFunds() {
         </table>
       </div>
       <div className="row comparing-chart">
-        <CompareStockChart/>
+        <CompareStockChart />
       </div>
     </div>
   );
