@@ -44,7 +44,7 @@ export const compareSlice = createSlice({
     builder
       .addCase(getListOfTickers.pending, (state, action) => {
         state.isLoading = true;
-        state.error = ""
+        state.error = "";
       })
       .addCase(getListOfTickers.fulfilled, (state, action) => {
         let payload = action.payload;
@@ -52,6 +52,10 @@ export const compareSlice = createSlice({
         state.tickers_price_history = payload.tickers_price_history;
         state.info = payload.info as any;
         state.isLoading = false;
+        state.error = "";
+        if (payload.error) {
+          state.error = `${payload.error.name} ${payload.error.description}`;
+        }
       })
       .addCase(getListOfTickers.rejected, (state, action) => {
         let payload = action.payload as ServerError;
@@ -62,17 +66,14 @@ export const compareSlice = createSlice({
 });
 
 export const selectTickersPriceHistory = (state: RootState) =>
-state.compare.tickers_price_history;
+  state.compare.tickers_price_history;
 
-export const selectTimestamps = (state: RootState) =>
-state.compare.timestamps;
+export const selectTimestamps = (state: RootState) => state.compare.timestamps;
 
-export const selectTickersInfo = (state: RootState) =>
-state.compare.info;
+export const selectTickersInfo = (state: RootState) => state.compare.info;
 
 export const selectCompareIsLoading = (state: RootState) =>
   state.compare.isLoading;
 
-export const selectCompareError = (state: RootState) =>
-  state.compare.error;
+export const selectCompareError = (state: RootState) => state.compare.error;
 export default compareSlice.reducer;
