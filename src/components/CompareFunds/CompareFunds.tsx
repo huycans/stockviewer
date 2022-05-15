@@ -11,6 +11,8 @@ import {
 import SearchBar from "../SearchBar";
 import { formatPercent } from "../utils";
 import CompareStockChart from "./CompareStockChart";
+import ErrorDisplay from "../ErrorDisplay";
+import { selectCompareError } from '../../redux/slices/compareSlice';
 
 type ReturnObject = {
   "1Y": string;
@@ -27,6 +29,7 @@ export default function CompareFunds() {
   const [tickerListString, setTickerListString] = useState("");
   const tickersPriceHistory = useSelector(selectTickersPriceHistory);
   const tickersInfo = useSelector(selectTickersInfo);
+  const compareError = useSelector(selectCompareError);
   let timestamps = useSelector(selectTimestamps).slice(); //copy timestamps arr
   const dispatch = useDispatch();
 
@@ -218,6 +221,9 @@ export default function CompareFunds() {
           searchBarId="tickerListSearchBar"
           placeholder="Enter comma-separated funds symbols"
         />
+      </div>
+      <div className="row">
+        <ErrorDisplay errorMessage={compareError}/>
       </div>
       <div className="row fund-overview-table">
         {startDateStr && endDateStr ? (

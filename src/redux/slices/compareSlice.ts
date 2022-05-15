@@ -44,6 +44,7 @@ export const compareSlice = createSlice({
     builder
       .addCase(getListOfTickers.pending, (state, action) => {
         state.isLoading = true;
+        state.error = ""
       })
       .addCase(getListOfTickers.fulfilled, (state, action) => {
         let payload = action.payload;
@@ -71,4 +72,7 @@ state.compare.info;
 
 export const selectCompareIsLoading = (state: RootState) =>
   state.compare.isLoading;
+
+export const selectCompareError = (state: RootState) =>
+  state.compare.error;
 export default compareSlice.reducer;

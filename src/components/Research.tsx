@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import classnames from "classnames";
 
-import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
+import { getTickerInfo, selectTickerInfo, selectTickerError } from '../redux/slices/tickerSlice';
 import SearchBar from "./SearchBar";
+import ErrorDisplay from "./ErrorDisplay";
 
 export default function Research() {
   const [tickerName, setTickerName] = useState("");
   const tickerInfo = useSelector(selectTickerInfo);
+  const tickerError = useSelector(selectTickerError);
 
   const dispatch = useDispatch();
 
@@ -55,7 +57,9 @@ export default function Research() {
             placeholder="Enter a stock ticker here"
           />
         </div>
-
+        <div className="row">
+          <ErrorDisplay errorMessage={tickerError}/>
+        </div>
         <div className="row research-tabs">
           {tickerInfo ? (
             <ul className="nav nav-tabs justify-content-center">
