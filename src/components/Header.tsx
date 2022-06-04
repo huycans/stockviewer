@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import classnames from "classnames";
-
-import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import stockviewerLogo from "../assets/img/stockviewer.png";
 import RoundedButton from "./RoundedButton";
 

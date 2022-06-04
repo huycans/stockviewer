@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectTickerInfo, TickerInfoType } from '../../redux/slices/tickerSlice';
 import InfoTable from "../InfoTable";
 import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";

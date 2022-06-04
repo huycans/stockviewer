@@ -1,21 +1,26 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Highcharts from "highcharts/highstock";
-import { useSelector } from "react-redux";
 import HighchartsReact from "highcharts-react-official";
-import {
-  selectTickerPriceHistory,
-  selectTickerInfo
-} from "../redux/slices/tickerSlice";
-import { Navigate } from "react-router-dom";
 
-export default function StockChart() {
-  const selectPriceHistory = useSelector(selectTickerPriceHistory);
-  const tickerInfo = useSelector(selectTickerInfo);
+interface StockChartProps {
+  HTMLTitle: string;
+  series: Highcharts.SeriesOptionsType[];
+  buttons?: Highcharts.RangeSelectorButtonsOptions[];
+  enableNavigator?: boolean;
+  enableRangeSelector?: boolean
+}
 
+export default function StockChart({
+  HTMLTitle,
+  series,
+  buttons,
+  enableNavigator = true,
+  enableRangeSelector=true
+}: StockChartProps) {
   const options: Highcharts.Options = {
     title: {
       useHTML: true,
-      text: "<b>" + tickerInfo?.symbol + "</b>" + " price history",
+      text: HTMLTitle,
       style: {
         fontSize: "1.5rem"
       }
@@ -32,91 +37,76 @@ export default function StockChart() {
       }
     },
     rangeSelector: {
+      enabled: enableRangeSelector,
       verticalAlign: "top",
       x: 0,
       y: 0,
-      buttons: [
-        {
-          type: "week",
-          count: 1,
-          text: "1w",
-          title: "View 1 week"
-        },
-        {
-          type: "month",
-          count: 1,
-          text: "1m",
-          title: "View 1 month"
-        },
-        {
-          type: "month",
-          count: 3,
-          text: "3m",
-          title: "View 3 months"
-        },
-        {
-          type: "month",
-          count: 6,
-          text: "6m",
-          title: "View 6 months"
-        },
-        {
-          type: "ytd",
-          text: "YTD",
-          title: "View year to date"
-        },
-        {
-          type: "year",
-          count: 1,
-          text: "1y",
-          title: "View 1 year"
-        },
-        {
-          type: "year",
-          count: 3,
-          text: "3y",
-          title: "View 3 year"
-        },
-        {
-          type: "year",
-          count: 5,
-          text: "5y",
-          title: "View 5 year"
-        },
-        {
-          type: "year",
-          count: 10,
-          text: "10y",
-          title: "View 10 year"
-        },
-        {
-          type: "all",
-          text: "All",
-          title: "View all"
-        }
-      ],
+      buttons: buttons
+        ? buttons
+        : [
+            {
+              type: "month",
+              count: 1,
+              text: "1m",
+              title: "View 1 month"
+            },
+            {
+              type: "month",
+              count: 3,
+              text: "3m",
+              title: "View 3 months"
+            },
+            {
+              type: "month",
+              count: 6,
+              text: "6m",
+              title: "View 6 months"
+            },
+            {
+              type: "ytd",
+              text: "YTD",
+              title: "View year to date"
+            },
+            {
+              type: "year",
+              count: 1,
+              text: "1y",
+              title: "View 1 year"
+            },
+            {
+              type: "year",
+              count: 3,
+              text: "3y",
+              title: "View 3 year"
+            },
+            {
+              type: "year",
+              count: 5,
+              text: "5y",
+              title: "View 5 year"
+            },
+            {
+              type: "year",
+              count: 10,
+              text: "10y",
+              title: "View 10 year"
+            },
+            {
+              type: "all",
+              text: "All",
+              title: "View all"
+            }
+          ],
       selected: 4
     },
-
-    series: [
-      {
-        type: "line",
-        id: "tickerInfo?.symbol",
-        name: tickerInfo?.symbol,
-        data: selectPriceHistory,
-        tooltip: {
-          valueDecimals: 2
-        }
-      }
-    ]
+    series: series,
+    navigator: {
+      enabled: enableNavigator
+    }
   };
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  if (tickerInfo === null){
-    return <Navigate to="/" replace={true} />
-  }
-  
   return (
     <div id="chart-container">
       <HighchartsReact

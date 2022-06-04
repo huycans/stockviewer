@@ -1,0 +1,28 @@
+.searchBar {
+  align-items: center;
+  display: flex;
+  margin-bottom: 40px;
+
+  .searchBar-main {
+    display: flex;
+
+    .search-label {
+      width: fit-content;
+      font-weight: bold;
+      align-self: center;
+    }
+
+    input {
+      flex-grow: 1;
+      height: 2rem;
+    }
+
+    .searchBtn {
+      min-width: 5rem;
+      height: 2rem;
+      border: none;
+      background-color: $main-blue;
+      color: $main-white;
+    }
+  }
+}

@@ -1,0 +1,690 @@
+{
+  "data": {
+      "info": {
+          "BND": {
+              "52WeekChange": null,
+              "SandP52WeekChange": null,
+              "algorithm": null,
+              "annualHoldingsTurnover": null,
+              "annualReportExpenseRatio": null,
+              "ask": 77.74,
+              "askSize": 3000,
+              "averageDailyVolume10Day": 7928960,
+              "averageVolume": 7834441,
+              "averageVolume10days": 7928960,
+              "beta": null,
+              "beta3Year": 1.03,
+              "bid": 77.5,
+              "bidSize": 45900,
+              "bondHoldings": {
+                  "creditQuality": null,
+                  "creditQualityCat": null,
+                  "duration": 6.84,
+                  "durationCat": null,
+                  "maturity": 8.7,
+                  "maturityCat": null
+              },
+              "bondPosition": 0.0715,
+              "bondRatings": [
+                  {
+                      "bb": 0
+                  },
+                  {
+                      "aa": 0.0327
+                  },
+                  {
+                      "aaa": 0.6897
+                  },
+                  {
+                      "a": 0.119799994
+                  },
+                  {
+                      "other": -0.0004
+                  },
+                  {
+                      "b": 0
+                  },
+                  {
+                      "bbb": 0.15810001
+                  },
+                  {
+                      "below_b": 0.0001
+                  },
+                  {
+                      "us_government": 0
+                  }
+              ],
+              "bookValue": null,
+              "cashPosition": null,
+              "category": "Intermediate-Term Bond",
+              "circulatingSupply": null,
+              "companyOfficers": [],
+              "convertiblePosition": null,
+              "currency": "USD",
+              "dayHigh": 77.82,
+              "dayLow": 77.51,
+              "dividendRate": null,
+              "dividendYield": null,
+              "earningsQuarterlyGrowth": null,
+              "enterpriseToEbitda": null,
+              "enterpriseToRevenue": null,
+              "enterpriseValue": null,
+              "equityHoldings": {
+                  "medianMarketCap": null,
+                  "medianMarketCapCat": null,
+                  "priceToBook": 0,
+                  "priceToBookCat": null,
+                  "priceToCashflow": 0,
+                  "priceToCashflowCat": null,
+                  "priceToEarnings": 0,
+                  "priceToEarningsCat": null,
+                  "priceToSales": 0,
+                  "priceToSalesCat": null,
+                  "threeYearEarningsGrowth": null,
+                  "threeYearEarningsGrowthCat": null
+              },
+              "exDividendDate": null,
+              "exchange": "NGM",
+              "exchangeTimezoneName": "America/New_York",
+              "exchangeTimezoneShortName": "EDT",
+              "expireDate": null,
+              "fiftyDayAverage": 80.6714,
+              "fiftyTwoWeekHigh": 87.08,
+              "fiftyTwoWeekLow": 77.51,
+              "fiveYearAverageReturn": 0.018,
+              "fiveYearAvgDividendYield": null,
+              "forwardEps": null,
+              "forwardPE": null,
+              "fromCurrency": null,
+              "fundFamily": "Vanguard",
+              "fundInceptionDate": 1175558400,
+              "gmtOffSetMilliseconds": "-14400000",
+              "holdings": [
+                  {
+                      "holdingName": "Federal National Mortgage Association 2.5%",
+                      "holdingPercent": 0.0043,
+                      "symbol": ""
+                  },
+                  {
+                      "holdingName": "United States Treasury Notes",
+                      "holdingPercent": 0.004,
+                      "symbol": ""
+                  },
+                  {
+                      "holdingName": "United States Treasury Bonds",
+                      "holdingPercent": 0.0038,
+                      "symbol": ""
+                  }
+              ],
+              "isEsgPopulated": false,
+              "lastCapGain": null,
+              "lastDividendDate": null,
+              "lastDividendValue": null,
+              "lastFiscalYearEnd": null,
+              "lastMarket": null,
+              "lastSplitDate": null,
+              "lastSplitFactor": null,
+              "legalType": "Exchange Traded Fund",
+              "logo_url": "",
+              "longBusinessSummary": "This index measures the performance of a wide spectrum of public, investment-grade, taxable, fixed income securities in the United States-including government, corporate, and international dollar-denominated bonds, as well as mortgage-backed and asset-backed securities-all with maturities of more than 1 year. All of the fund's investments will be selected through the sampling process, and at least 80% of its assets will be invested in bonds held in the index.",
+              "longName": "Vanguard Total Bond Market Index Fund",
+              "market": "us_market",
+              "marketCap": null,
+              "maxAge": 1,
+              "maxSupply": null,
+              "messageBoardId": "finmb_33837570",
+              "morningStarOverallRating": null,
+              "morningStarRiskRating": null,
+              "mostRecentQuarter": null,
+              "navPrice": 79.42,
+              "netIncomeToCommon": null,
+              "nextFiscalYearEnd": null,
+              "open": 77.66,
+              "openInterest": null,
+              "otherPosition": null,
+              "payoutRatio": null,
+              "pegRatio": null,
+              "phone": "NA",
+              "preMarketPrice": null,
+              "preferredPosition": null,
+              "previousClose": 78.03,
+              "priceHint": 2,
+              "priceToBook": null,
+              "priceToSalesTrailing12Months": null,
+              "profitMargins": null,
+              "quoteType": "ETF",
+              "regularMarketDayHigh": 77.82,
+              "regularMarketDayLow": 77.51,
+              "regularMarketOpen": 77.66,
+              "regularMarketPreviousClose": 78.03,
+              "regularMarketPrice": 77.61,
+              "regularMarketVolume": 8989667,
+              "revenueQuarterlyGrowth": null,
+              "sectorWeightings": [
+                  {
+                      "realestate": 0
+                  },
+                  {
+                      "consumer_cyclical": 0
+                  },
+                  {
+                      "basic_materials": 0
+                  },
+                  {
+                      "consumer_defensive": 0
+                  },
+                  {
+                      "technology": 0
+                  },
+                  {
+                      "communication_services": 0
+                  },
+                  {
+                      "financial_services": 0
+                  },
+                  {
+                      "utilities": 0
+                  },
+                  {
+                      "industrials": 0
+                  },
+                  {
+                      "energy": 0
+                  },
+                  {
+                      "healthcare": 0
+                  }
+              ],
+              "shortName": "Vanguard Total Bond Market ETF",
+              "startDate": null,
+              "stockPosition": 0,
+              "strikePrice": null,
+              "symbol": "BND",
+              "threeYearAverageReturn": 0.0128,
+              "toCurrency": null,
+              "totalAssets": 304967188480,
+              "tradeable": false,
+              "trailingAnnualDividendRate": null,
+              "trailingAnnualDividendYield": null,
+              "trailingEps": null,
+              "twoHundredDayAverage": 84.2725,
+              "volume": 8989667,
+              "volume24Hr": null,
+              "volumeAllCurrencies": null,
+              "yield": 0.0195,
+              "ytdReturn": null
+          },
+          "FTIHX": {
+              "52WeekChange": null,
+              "SandP52WeekChange": null,
+              "address1": "Fidelity Fixed Income Trust",
+              "address2": "82 Devonshire Street",
+              "address3": "Boston, MA 02109",
+              "algorithm": null,
+              "annualHoldingsTurnover": 0.04,
+              "annualReportExpenseRatio": 0.00059999997,
+              "ask": null,
+              "askSize": null,
+              "averageDailyVolume10Day": 0,
+              "averageVolume": 0,
+              "averageVolume10days": 0,
+              "beta": null,
+              "beta3Year": null,
+              "bid": null,
+              "bidSize": null,
+              "bondHoldings": {
+                  "creditQuality": null,
+                  "creditQualityCat": null,
+                  "duration": null,
+                  "durationCat": 1.75,
+                  "maturity": null,
+                  "maturityCat": 1.62
+              },
+              "bondPosition": 0,
+              "bondRatings": [
+                  {
+                      "bb": 0
+                  },
+                  {
+                      "aa": 0
+                  },
+                  {
+                      "aaa": 0
+                  },
+                  {
+                      "a": 0
+                  },
+                  {
+                      "other": 0
+                  },
+                  {
+                      "b": 0
+                  },
+                  {
+                      "bbb": 0
+                  },
+                  {
+                      "below_b": 0
+                  },
+                  {
+                      "us_government": 0
+                  }
+              ],
+              "bookValue": null,
+              "cashPosition": 0.018,
+              "category": null,
+              "circulatingSupply": null,
+              "companyOfficers": [],
+              "convertiblePosition": 0,
+              "currency": "USD",
+              "dayHigh": null,
+              "dayLow": null,
+              "dividendRate": null,
+              "dividendYield": null,
+              "earningsQuarterlyGrowth": null,
+              "enterpriseToEbitda": null,
+              "enterpriseToRevenue": null,
+              "enterpriseValue": null,
+              "equityHoldings": {
+                  "medianMarketCap": 31070.58,
+                  "medianMarketCapCat": 55008.26,
+                  "priceToBook": 1.84,
+                  "priceToBookCat": 2.01,
+                  "priceToCashflow": 10.43,
+                  "priceToCashflowCat": 11.12,
+                  "priceToEarnings": 20.07,
+                  "priceToEarningsCat": 19.5,
+                  "priceToSales": 1.43,
+                  "priceToSalesCat": 1.61,
+                  "threeYearEarningsGrowth": 4.64,
+                  "threeYearEarningsGrowthCat": 3.07
+              },
+              "exDividendDate": null,
+              "exchange": "NAS",
+              "exchangeTimezoneName": "America/New_York",
+              "exchangeTimezoneShortName": "EDT",
+              "expireDate": null,
+              "fiftyDayAverage": 13.4906,
+              "fiftyTwoWeekHigh": 15.2,
+              "fiftyTwoWeekLow": 12.47,
+              "fiveYearAverageReturn": null,
+              "fiveYearAvgDividendYield": null,
+              "forwardEps": null,
+              "forwardPE": null,
+              "fromCurrency": null,
+              "fundFamily": null,
+              "fundInceptionDate": 1465257600,
+              "gmtOffSetMilliseconds": "-14400000",
+              "holdings": [
+                  {
+                      "holdingName": "Taiwan Semiconductor Manufacturing Co Ltd",
+                      "holdingPercent": 0.0162,
+                      "symbol": "2330.TW"
+                  },
+                  {
+                      "holdingName": "Tencent Holdings Ltd",
+                      "holdingPercent": 0.0143,
+                      "symbol": "00700"
+                  },
+                  {
+                      "holdingName": "Alibaba Group Holding Ltd ADR",
+                      "holdingPercent": 0.0137,
+                      "symbol": "BABA"
+                  },
+                  {
+                      "holdingName": "Fidelity Revere Str Tr",
+                      "holdingPercent": 0.0117999995,
+                      "symbol": ""
+                  },
+                  {
+                      "holdingName": "Nestle SA",
+                      "holdingPercent": 0.0107,
+                      "symbol": "NESN"
+                  },
+                  {
+                      "holdingName": "Samsung Electronics Co Ltd",
+                      "holdingPercent": 0.0106,
+                      "symbol": "005930.KS"
+                  },
+                  {
+                      "holdingName": "ASML Holding NV",
+                      "holdingPercent": 0.0086,
+                      "symbol": "ASML"
+                  },
+                  {
+                      "holdingName": "Roche Holding AG",
+                      "holdingPercent": 0.0068,
+                      "symbol": "ROG"
+                  },
+                  {
+                      "holdingName": "MSCI EAFE Index TAS Future June 21",
+                      "holdingPercent": 0.0066000004,
+                      "symbol": "MFS/ZM21"
+                  },
+                  {
+                      "holdingName": "LVMH Moet Hennessy Louis Vuitton SE",
+                      "holdingPercent": 0.0064999997,
+                      "symbol": "MC.PA"
+                  }
+              ],
+              "isEsgPopulated": false,
+              "lastCapGain": 0,
+              "lastDividendDate": null,
+              "lastDividendValue": 0.22,
+              "lastFiscalYearEnd": null,
+              "lastMarket": null,
+              "lastSplitDate": null,
+              "lastSplitFactor": null,
+              "legalType": null,
+              "logo_url": "",
+              "longBusinessSummary": "The fund normally invests at least 80% of assets in securities included in the MSCI ACWI (All Country World Index) ex USA Investable Market Index and in depositary receipts representing securities included in the index. The MSCI ACWI (All Country World Index) ex USA Investable Market Index is a market capitalization-weighted index designed to measure the investable equity market performance for global investors of large, mid, and small-cap stocks in developed and emerging markets, excluding the U.S.",
+              "longName": "Fidelity Total International Index Fund",
+              "market": "us_market",
+              "marketCap": null,
+              "maxAge": 1,
+              "maxSupply": null,
+              "messageBoardId": "finmb_329469020",
+              "morningStarOverallRating": 4,
+              "morningStarRiskRating": 3,
+              "mostRecentQuarter": null,
+              "navPrice": null,
+              "netIncomeToCommon": null,
+              "nextFiscalYearEnd": null,
+              "open": null,
+              "openInterest": null,
+              "otherPosition": 0.001,
+              "payoutRatio": null,
+              "pegRatio": null,
+              "phone": "800-835-5092",
+              "preMarketPrice": null,
+              "preferredPosition": 0.0001,
+              "previousClose": 13.31,
+              "priceHint": 2,
+              "priceToBook": null,
+              "priceToSalesTrailing12Months": null,
+              "profitMargins": null,
+              "quoteType": "MUTUALFUND",
+              "regularMarketDayHigh": null,
+              "regularMarketDayLow": null,
+              "regularMarketOpen": null,
+              "regularMarketPreviousClose": 13.31,
+              "regularMarketPrice": 13.34,
+              "regularMarketVolume": null,
+              "revenueQuarterlyGrowth": null,
+              "sectorWeightings": [
+                  {
+                      "realestate": 0.0365
+                  },
+                  {
+                      "consumer_cyclical": 0.121800005
+                  },
+                  {
+                      "basic_materials": 0.0865
+                  },
+                  {
+                      "consumer_defensive": 0.08189999
+                  },
+                  {
+                      "technology": 0.1317
+                  },
+                  {
+                      "communication_services": 0.074200004
+                  },
+                  {
+                      "financial_services": 0.17709999
+                  },
+                  {
+                      "utilities": 0.031
+                  },
+                  {
+                      "industrials": 0.1273
+                  },
+                  {
+                      "energy": 0.0423
+                  },
+                  {
+                      "healthcare": 0.089700006
+                  }
+              ],
+              "shortName": "Fidelity Total International In",
+              "startDate": null,
+              "stockPosition": 0.9809,
+              "strikePrice": null,
+              "symbol": "FTIHX",
+              "threeYearAverageReturn": null,
+              "toCurrency": null,
+              "totalAssets": 8908344320,
+              "tradeable": false,
+              "trailingAnnualDividendRate": null,
+              "trailingAnnualDividendYield": null,
+              "trailingEps": null,
+              "twoHundredDayAverage": 14.33735,
+              "volume": null,
+              "volume24Hr": null,
+              "volumeAllCurrencies": null,
+              "yield": 0.0148,
+              "ytdReturn": -0.0620642
+          }
+      },
+      "tickers_price_history": {
+          "BND": [
+              72.6534652709961,
+              72.42526245117188,
+              72.50643157958984,
+              71.8293685913086,
+              69.97737884521484,
+              70.02803802490234,
+              70.47663116455078,
+              70.76399230957031,
+              70.745361328125,
+              71.29408264160156,
+              71.8066177368164,
+              71.8406982421875,
+              72.13256072998047,
+              72.90083312988281,
+              72.70939636230469,
+              72.69415283203125,
+              72.61184692382812,
+              72.81934356689453,
+              72.25358581542969,
+              71.3477554321289,
+              71.84639739990234,
+              71.2031021118164,
+              71.70680236816406,
+              71.66948699951172,
+              71.8131332397461,
+              72.28750610351562,
+              71.89270782470703,
+              71.27603149414062,
+              71.71748352050781,
+              72.88117218017578,
+              74.0580062866211,
+              73.80835723876953,
+              75.25196838378906,
+              75.22142791748047,
+              76.59939575195312,
+              77.55931854248047,
+              77.67620849609375,
+              79.82794189453125,
+              79.38402557373047,
+              79.63520812988281,
+              79.5994644165039,
+              79.36715698242188,
+              81.29251861572266,
+              82.47122192382812,
+              81.30491638183594,
+              83.52909088134766,
+              84.10769653320312,
+              84.67784881591797,
+              85.91655731201172,
+              85.11223602294922,
+              85.03245544433594,
+              84.56184387207031,
+              85.58601379394531,
+              85.44316864013672,
+              85.12464141845703,
+              83.67393493652344,
+              82.61743927001953,
+              83.2690200805664,
+              83.45816040039062,
+              84.20423126220703,
+              85.1910400390625,
+              85.02714538574219,
+              84.16581726074219,
+              84.22838592529297,
+              84.39623260498047,
+              83.86589813232422,
+              82.52656555175781,
+              81.45272064208984,
+              79.21705627441406,
+              77.41680145263672
+          ],
+          "FTIHX": [
+              8.968135833740234,
+              9.039523124694824,
+              9.182299613952637,
+              9.003829956054688,
+              8.789665222167969,
+              8.923518180847168,
+              9.315375328063965,
+              9.44089412689209,
+              9.70090103149414,
+              9.925042152404785,
+              10.229877471923828,
+              10.27470588684082,
+              10.651265144348145,
+              10.714024543762207,
+              10.902305603027344,
+              11.108516693115234,
+              11.189208030700684,
+              11.234034538269043,
+              12.074975967407227,
+              11.453872680664062,
+              11.399068832397461,
+              11.490407943725586,
+              11.271195411682129,
+              11.061116218566895,
+              11.307730674743652,
+              11.061116218566895,
+              11.097651481628418,
+              10.175131797790527,
+              10.284737586975098,
+              9.59056282043457,
+              10.533699989318848,
+              10.720301628112793,
+              10.794941902160645,
+              11.093505859375,
+              10.487048149108887,
+              11.102836608886719,
+              10.897573471069336,
+              10.636330604553223,
+              10.91623306274414,
+              11.280109405517578,
+              11.410730361938477,
+              11.588003158569336,
+              11.510148048400879,
+              10.724275588989258,
+              9.02794361114502,
+              9.737144470214844,
+              10.168416023254395,
+              10.599687576293945,
+              11.050125122070312,
+              11.548484802246094,
+              11.318472862243652,
+              11.059709548950195,
+              12.49728012084961,
+              13.00522232055664,
+              13.242454528808594,
+              13.52503776550293,
+              13.739412307739258,
+              14.14867115020752,
+              14.577418327331543,
+              14.499464988708496,
+              14.314323425292969,
+              14.56767463684082,
+              14.060973167419434,
+              14.431255340576172,
+              13.817365646362305,
+              13.973274230957031,
+              13.920000076293945,
+              13.479999542236328,
+              13.449999809265137,
+              13.34000015258789
+          ]
+      },
+      "timestamps": [
+          1467331200000,
+          1470009600000,
+          1472688000000,
+          1475280000000,
+          1477958400000,
+          1480550400000,
+          1483228800000,
+          1485907200000,
+          1488326400000,
+          1491004800000,
+          1493596800000,
+          1496275200000,
+          1498867200000,
+          1501545600000,
+          1504224000000,
+          1506816000000,
+          1509494400000,
+          1512086400000,
+          1514764800000,
+          1517443200000,
+          1519862400000,
+          1522540800000,
+          1525132800000,
+          1527811200000,
+          1530403200000,
+          1533081600000,
+          1535760000000,
+          1538352000000,
+          1541030400000,
+          1543622400000,
+          1546300800000,
+          1548979200000,
+          1551398400000,
+          1554076800000,
+          1556668800000,
+          1559347200000,
+          1561939200000,
+          1564617600000,
+          1567296000000,
+          1569888000000,
+          1572566400000,
+          1575158400000,
+          1577836800000,
+          1580515200000,
+          1583020800000,
+          1585699200000,
+          1588291200000,
+          1590969600000,
+          1593561600000,
+          1596240000000,
+          1598918400000,
+          1601510400000,
+          1604188800000,
+          1606780800000,
+          1609459200000,
+          1612137600000,
+          1614556800000,
+          1617235200000,
+          1619827200000,
+          1622505600000,
+          1625097600000,
+          1627776000000,
+          1630454400000,
+          1633046400000,
+          1635724800000,
+          1638316800000,
+          1640995200000,
+          1643673600000,
+          1646092800000,
+          1648771200000
+      ]
+  },
+  "error": {},
+  "status": "ok"
+}

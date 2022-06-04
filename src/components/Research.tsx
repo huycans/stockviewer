@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import classnames from "classnames";
 
-import { getTickerInfo, selectTickerInfo } from "../redux/slices/tickerSlice";
+import { getTickerInfo, selectTickerInfo, selectTickerError } from '../redux/slices/tickerSlice';
+import SearchBar from "./SearchBar";
+import ErrorDisplay from "./ErrorDisplay";
 
 export default function Research() {
-  const [tickerName, setTickerName] = useState("VTHRX");
+  const [tickerName, setTickerName] = useState("");
   const tickerInfo = useSelector(selectTickerInfo);
+  const tickerError = useSelector(selectTickerError);
 
   const dispatch = useDispatch();
-  let navigate = useNavigate();
 
   const handleTickerSearch = () => {
     dispatch(getTickerInfo(tickerName));
@@ -21,15 +21,6 @@ export default function Research() {
   const handleChange = (event: React.ChangeEvent) => {
     let target = event.target as HTMLInputElement;
     setTickerName(target.value);
-  };
-
-  const handleKeyPressed = (event: React.KeyboardEvent) => {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.key === "Enter" || event.keyCode === 13) {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      handleTickerSearch();
-    }
   };
 
   const navItems = [
@@ -56,25 +47,18 @@ export default function Research() {
   return (
     <div className="container">
       <div className="row">
-        <div className="row searchBar">
-          <div className="col-2 blank"></div>
-          <div className="col-8">
-            <label className="search-label" htmlFor="searchBar">
-              Ticker symbol: 
-            </label>
-            <input
-                value={tickerName}
-                id="searchBar"
-                type="text"
-                onChange={handleChange}
-                placeholder="Enter a stock ticker here"
-                onKeyUp={handleKeyPressed}
-              />
-            <button id="searchBtn" onClick={handleTickerSearch}>
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
-          <div className="col-2 blank"></div>
+        <div className="row">
+          <SearchBar
+            value={tickerName}
+            onChange={handleChange}
+            handleSearch={handleTickerSearch}
+            label={"Ticker symbol:"}
+            searchBarId="searchBar"
+            placeholder="Enter a stock ticker here"
+          />
+        </div>
+        <div className="row">
+          <ErrorDisplay errorMessage={tickerError}/>
         </div>
         <div className="row research-tabs">
           {tickerInfo ? (

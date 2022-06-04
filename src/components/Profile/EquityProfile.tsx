@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectTickerInfo,
   TickerInfoType
 } from "../../redux/slices/tickerSlice";
-import { formatDate, formatMoney, formatNumber, formatPercent } from "../utils";
+import { formatNumber } from "../utils";
 
 export default function EquityProfile() {
   const tickerInfo = useSelector(selectTickerInfo) as TickerInfoType;
